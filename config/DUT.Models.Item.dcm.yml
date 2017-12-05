@@ -1,0 +1,21 @@
+# DUT.Models.Item.dcm.yml
+
+DUT\Models\Item:
+  type: entity
+  table: pwk_item # = MySQL Table Name
+
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: auto
+
+  fields:
+    title:
+      type: string
+      column: title
+      nullable: false
+    check:
+      type: integer
+      column: is_checked
+      nullable: false

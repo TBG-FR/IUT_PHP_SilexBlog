@@ -1,0 +1,31 @@
+{# 'layout.twig' ~ Base HTML template #}
+
+<!DOCTYPE html>
+<html lang="fr">
+
+    <head>
+        {% block head %}
+            <title>TP3 - Default Page Title</title>
+        {% endblock %}
+            <meta charset="utf-8"/>
+        
+            <!-- CSS : Bootstrap -->
+            <link href="{{app.request.basepath}}/css/bootstrap.css" rel="stylesheet" media="all" type="text/css">
+
+            <!-- CSS : Custom -->
+            <link href="{{app.request.basepath}}/css/style.css" rel="stylesheet" media="all" type="text/css">
+
+            <!-- Javascript -->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+            <script src="{{app.request.basepath}}/js/bootstrap.js"></script>
+    </head>
+    
+    <body>
+        <div class="content">
+        {% block body %}
+            <p class="text">Default Body Block</p>
+        {% endblock %}
+        </div>
+    </body>
+
+</html>

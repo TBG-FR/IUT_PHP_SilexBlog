@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * SILEX APPLICATION & REQUIREMENTS
+ */
+
 require __DIR__ . '/vendor/autoload.php';
 
 use Symfony\Component\HttpFoundation\Response;
@@ -8,13 +12,12 @@ use Doctrine\ORM\EntityManager;
 
 $app = new Silex\Application();
 $app->register(new Silex\Provider\UrlGeneratorServiceProvider());
+$app->register(new Silex\Provider\TwigServiceProvider(), [ 'twig.path' => __DIR__.'/views', ]);
 
-// TWIG => TEMPLATE ENGINE
-$app->register(new Silex\Provider\TwigServiceProvider(), [
-    'twig.path' => __DIR__.'/views',
-]);
+/**
+ * DATABASE INFORMATIONS
+ */
 
-// DOCTRINE => DATABASE
 $app['connection'] = [
     'driver' => 'pdo_mysql',
     'host' => 'localhost',
@@ -26,9 +29,7 @@ $app['connection'] = [
 
 $app['doctrine_config'] = Setup::createYAMLMetadataConfiguration([__DIR__ . '/config'], true);
 
-$app['em'] = function ($app) {
-    return EntityManager::create($app['connection'], $app['doctrine_config']);
-};
+$app['em'] = function ($app) { return EntityManager::create($app['connection'], $app['doctrine_config']); };
 
 /**
  * ROUTES
@@ -78,6 +79,8 @@ $app->get('/test', function () use ($app) {
     return $app['twig']->render('hello.twig');
 });
 
-/* ===== ===== ===== Execution [Sujet]  ===== ===== ===== */
+/**
+ * RUN & DEBUG
+ */
 $app['debug'] = true;
 $app->run();

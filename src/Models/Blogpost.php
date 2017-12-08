@@ -8,11 +8,16 @@ class Blogpost {
     
     /* ----- -----  ----- ----- Attribute(s) ----- -----  ----- ----- */
         
-//    /**
-//     * @var int : Unique id of the QCM
-//     */
-//    private $id;
-//        
+    /**
+     * @var int : Unique id of the Blogpost
+     */
+    private $id;
+        
+    /**
+     * @var string : Date of publication of the Blogpost
+     */
+    private $date;
+        
 //    /**
 //     * @var int : Owner's id
 //     */

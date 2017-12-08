@@ -31,8 +31,8 @@
 	
     "scripts": {
         "run": [
-            "echo 'Serveur Web lancé - http://localhost:8850'",
-            "php -S localhost:8850 -t web"
+            "echo 'Serveur Web lancey - http://localhost:8850'",
+            "php -S localhost:8850"
         ]
     }
 }

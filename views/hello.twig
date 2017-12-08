@@ -1,1 +1,6 @@
-<h1>Hello {{ name }} ! </h1>
+<h1>Hello {{ name }} !</h1>
+
+<h2>Date Format Conventions</h2>
+American (Month/Day/Year) : {{ "now"|date("m/d/Y") }} <br />
+European (Day-Month-Year) : {{ "now"|date("d-m-Y") }} <br />
+ISO (Year.Month.Day) : {{ "now"|date("Y.m.d") }} <br />

@@ -18,6 +18,7 @@ DROP TABLE IF EXISTS pwsb__Comment;
 CREATE TABLE pwsb_Blogpost
 (
     id          INT NOT NULL AUTO_INCREMENT,
+    date        VARCHAR(12) NOT NULL,
     title       VARCHAR(150) NOT NULL,
     content     VARCHAR(5000) NOT NULL,
     image       VARCHAR(250),
@@ -47,9 +48,9 @@ COLLATE utf8_bin;
 /*==============================================================*/
 
 /* Let's create three Blogposts here */
-INSERT INTO pwsb_Blogpost (title, content, image) VALUES
-('Ouverture du Blog !', "Bienvenue à tous, le Blog est désormais ouvert ! N'hésitez pas à commenter mes articles :D", ""),
-('Les Licornes', 'Article sur les licornes et leur existence prouvée', "");
+INSERT INTO pwsb_Blogpost (date, title, content, image) VALUES
+('01-01-2016','Ouverture du Blog !', "Bienvenue à tous, le Blog est désormais ouvert ! N'hésitez pas à commenter mes articles :D", ""),
+('24-12-2017','Les Licornes', 'Article sur les licornes et leur existence prouvée', "");
 
 /* Let's create two Teachers here */
 #INSERT INTO qcmaster_Teacher (email, firstname, lastname, password) VALUES

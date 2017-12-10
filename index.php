@@ -36,6 +36,7 @@ $app['em'] = function ($app) { return EntityManager::create($app['connection'], 
  */
  
 // ROUTE : Base ('/')
+/*
 $app->get('/', function() {
     $html = '<h1>ProjetWeb - TP3</h1>';
     $html .= ' <br/>/list 
@@ -44,7 +45,12 @@ $app->get('/', function() {
 				<br/>/check/{i}';
     
     return new Response($html);
-});
+});*/
+
+/* ===== ===== ===== Routes ~ BlogpostsController  ===== ===== ===== */
+$app->get('/', 'DUT\\Controllers\\BlogpostsController::listAction');
+
+
 
 /* ===== ===== ===== Routes & Co [Sujet]  ===== ===== ===== */
 $app->get('/list_old', 'DUT\\Controllers\\ItemsController::listAction_OLD')

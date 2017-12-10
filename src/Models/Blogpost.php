@@ -1,5 +1,7 @@
 <?php
 
+namespace DUT\Models;
+
 /**
  * Class Blogpost
  * No further description given
@@ -9,37 +11,48 @@ class Blogpost {
     /* ----- -----  ----- ----- Attribute(s) ----- -----  ----- ----- */
         
     /**
-     * @var int : Unique id of the Blogpost
+     * @var int : Unique id of the post
      */
-    private $id;
+    protected $id;
         
     /**
-     * @var string : Date of publication of the Blogpost
+     * @var string : Date of creation of the post, with European format (Day-Month-Year)
      */
-    private $date;
+    protected $date;
         
-//    /**
-//     * @var int : Owner's id
-//     */
-//    private $teacher_id;
-//    /**
-//     * @var string : Title of the QCM
-//     */
-//    private $title;
-//    /**
-//     * @var string : Topic of the QCM
-//     */
-//    private $topic;
-//    /**
-//     * @var string : Unique link to the QCM
-//     */
-//    private $link;
-//    /**
-//     * @var array<Question> : All the questions related to this QCM
-//     */
-//    private $questions;
+    /**
+     * @var string : Title of the post
+     */
+    protected $title;
+        
+    /**
+     * @var string : Raw content of the post, containing text, links, etc.
+     */
+    protected $content;
+        
+    /**
+     * @var string : Link to the image displayed on the Blogpost thumbnail (can be empty)
+     */
+    protected $image;
     
     /* ----- -----  ----- ----- Constructor(s) ----- -----  ----- ----- */
+    
+    /**
+     * Blogpost's Constructor with values
+     * @param string $title
+     * @param string $content
+     * @param string $image [can be null]
+     * @return null : This function returns nothing
+     */
+    public function __construct($title, $content, $image = null){
+        
+        $this->date = date('Y-m-d H:i:s');
+        
+        $this->title = $title;
+        $this->content = $content;
+        $this->image = $image;
+        
+    }
     
 //    /**
 //     * QCM's Constructor : Empty Constructor
@@ -101,6 +114,82 @@ class Blogpost {
 //    }
     
     /* ----- -----  ----- ----- Accessor(s) ----- -----  ----- ----- */
+    
+    /**
+     * Accessor 'getID' : Returns the id of that Blogpost
+     * @param null : This function needs no parameters
+     * @return int
+     */    
+    public function getID() {
+        return $this->id;
+    }
+    
+    /**
+     * Accessor 'getDate' : Returns the date of that Blogpost, with the selected format
+     * @param int $type : The wanted format (0 = DateTime (SQL), 1 = ISO, 2 = Human)
+     * @return string
+     */    
+    public function getDate($type) {
+        
+        if($type == 1) {
+            
+            $datetime = new \DateTime($this->date);
+            $datetime = $datetime->format(\DateTime::ATOM); // Updated ISO8601
+            
+            return $datetime;
+            
+        }
+        
+        else if($type == 2) {
+            
+            $datetime = date('l jS \o\f F Y \a\t H:i', strtotime($this->date));
+            
+            return $datetime;
+            
+        }
+        
+        else { return $this->date; }
+        
+    }
+    
+    /**
+     * Accessor 'getTitle' : Returns the title of that Blogpost
+     * @param null : This function needs no parameters
+     * @return string
+     */    
+    public function getTitle() {
+        return $this->title;
+    }
+    
+    /**
+     * Accessor 'getContent' : Returns the content of that Blogpost
+     * @param null : This function needs no parameters
+     * @return string
+     */    
+    public function getContent() {
+        return $this->content;
+    }
+    
+    /**
+     * Accessor 'getShortcontent' : Returns the first 300 characters of that Blogpost's content
+     * @param null : This function needs no parameters
+     * @return string
+     */    
+    public function getShortcontent() {
+        
+        $shortcontent = substr($this->content, 0, 300);
+        
+        return $shortcontent;
+    }
+    
+    /**
+     * Accessor 'getImage' : Returns the image of that Blogpost
+     * @param null : This function needs no parameters
+     * @return string
+     */    
+    public function getImage() {
+        return $this->image;
+    }
     
 //    /**
 //     * Accessor 'getID' : Returns the id of that QCM

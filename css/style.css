@@ -95,6 +95,35 @@ strong { text-shadow: 1px 0px 1px currentColor; /* 1px 0px 0px pour enlever le "
 
 }
 
+.posts_list {
+    
+}
+
+.posts_list > .element {
+    
+}
+
+.posts_list > .element > .title {
+    
+    font-size: calc(1.5em + 1.5vh);
+    color: red;
+    
+}
+
+.posts_list > .element > .content {
+    
+    font-size: calc(1em + 0.5vh);
+    color: orange;
+    
+}
+
+.posts_list > .element > .menu {
+    
+    /*font-size: calc(1em + 0.5vh);*/
+    color: yellow;
+    
+}
+
 .itemlist {
 
     margin-top: 2.5%;

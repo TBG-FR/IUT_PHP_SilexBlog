@@ -1,0 +1,43 @@
+{# 'posts_list.twig' ~ Creates a list with all the posts and the related buttons/links #}
+
+{% block posts_list %}
+    <div class="posts_list">
+    
+        {% for post in posts %}
+            <div class="element">
+                
+                {# Div containing the title of the post #}
+                <div class="title">
+                    {{ post.getTitle()|capitalize }}
+                </div>
+                
+                {# Div containing the first elements of the post's content #}
+                <div class="content">
+                    {{ post.getShortContent() }}
+                </div>
+                
+                {# Div containing a mini "menu" with some informations #}
+                <div class="menu">
+                    <time datetime="{{ post.getDate(1) }}">{{ post.getDate(2) }}</time>
+                    <a class="btn btn-primary" href="post/{{ post.getID() }}">Read that post</a>
+                    <a href="post/{{ post.getID() }}/comments">Comments (?)</a>
+                </div>
+                
+            </div>
+        {% endfor %}
+        
+    </div>
+{% endblock posts_list %}
+
+
+<br /><br />
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-2">UNE PLACE ICI</div>
+                <div class="col-md-2">UNE PLACE ICI</div>
+                <div class="col-md-2">UNE PLACE ICI</div>
+                <div class="col-md-2">UNE PLACE ICI</div>
+                <div class="col-md-2">UNE PLACE ICI</div>
+                <div class="col-md-2">UNE PLACE ICI</div>
+            </div>
+        </div>

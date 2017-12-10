@@ -2,7 +2,7 @@
 
 DUT\Models\Item:
   type: entity
-  table: pwk_item # = MySQL Table Name
+  table: pwk_item # => MySQL Table Name
 
   id:
     id:

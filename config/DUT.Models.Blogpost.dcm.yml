@@ -1,0 +1,33 @@
+# DUT.Models.Blogpost.dcm.yml
+
+DUT\Models\Blogpost:
+
+  # Informations
+  type: entity
+  table: pwsb_blogpost # => MySQL Table Name
+
+  # ID(s) fields
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: auto
+
+  # Other fields
+  fields:
+    date:
+      type: string
+      column: date
+      nullable: false
+    title:
+      type: string
+      column: title
+      nullable: false
+    content:
+      type: string
+      column: content
+      nullable: false
+    image:
+      type: string
+      column: image
+      nullable: true

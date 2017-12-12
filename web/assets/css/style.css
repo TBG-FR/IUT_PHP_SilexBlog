@@ -53,14 +53,14 @@ strong { text-shadow: 1px 0px 1px currentColor; /* 1px 0px 0px pour enlever le "
 .title {
 
     font-family: 'Archive','Trebuchet MS', Arial, sans-serif; /* Fonts, in order of appearance */
-    font-size: calc(1.5em + 5vh);
+    /*font-size: calc(1.5em + 5vh);*/
 
 }
 
 .text {
 
     font-family: 'ChampagneBold','Trebuchet MS', Arial, sans-serif; /* Fonts, in order of appearance */
-    font-size: calc(1em + 2.5vh);
+    /*font-size: calc(1em + 2.5vh);*/
 
 }
 
@@ -101,29 +101,31 @@ strong { text-shadow: 1px 0px 1px currentColor; /* 1px 0px 0px pour enlever le "
 
 .posts_list > .element {
     
+    border-style: solid;
+    
 }
 
 .posts_list > .element > .title {
     
-    font-size: calc(1.5em + 1.5vh);
-    color: red;
+    /*font-size: calc(1.5em + 1.5vh);
+    color: red;*/
     
 }
 
 .posts_list > .element > .content {
     
-    font-size: calc(1em + 0.5vh);
-    color: orange;
+    /*font-size: calc(1em + 0.5vh);
+    color: orange;*/
     
 }
 
 .posts_list > .element > .menu {
     
-    /*font-size: calc(1em + 0.5vh);*/
-    color: yellow;
+    /*font-size: calc(1em + 0.5vh);
+    color: yellow;*/
     
 }
-
+/*
 .itemlist {
 
     margin-top: 2.5%;
@@ -133,7 +135,7 @@ strong { text-shadow: 1px 0px 1px currentColor; /* 1px 0px 0px pour enlever le "
 
 .itemlist > .list {
 
-    font-family: 'ChampagneBold','Trebuchet MS', Arial, sans-serif; /* Fonts, in order of appearance */
+    font-family: 'ChampagneBold','Trebuchet MS', Arial, sans-serif; /* Fonts, in order of appearance //*
     font-size: calc(1em + 1vh);
     list-style: none;
     
@@ -152,24 +154,11 @@ strong { text-shadow: 1px 0px 1px currentColor; /* 1px 0px 0px pour enlever le "
 
 }
 
-.itemlist > .list > .element > input[type=checkbox]
-{
-  /* Double-sized Checkboxes */
-  -ms-transform: scale(2); /* IE */
-  -moz-transform: scale(2); /* FF */
-  -webkit-transform: scale(2); /* Safari and Chrome */
-  -o-transform: scale(2); /* Opera */
-  padding: 10px;
-    
-    margin-left: 1vw;
-    margin-right: 1vw;
-}
-
 .qcm_list {
     /*display: -ms-flexbox;
     display: flex;
     -ms-flex-wrap: wrap;
-    flex-wrap: wrap;*/
+    flex-wrap: wrap;//*
     list-style: none;
 }
 
@@ -179,6 +168,7 @@ strong { text-shadow: 1px 0px 1px currentColor; /* 1px 0px 0px pour enlever le "
     background-color: #e9ecef;
     border-radius: 0.25rem;
 }
+*/
 
 /*
 ALL

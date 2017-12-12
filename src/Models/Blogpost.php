@@ -2,6 +2,8 @@
 
 namespace DUT\Models;
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 /**
  * Class Blogpost
  * No further description given
@@ -34,6 +36,14 @@ class Blogpost {
      * @var string : Link to the image displayed on the Blogpost thumbnail (can be empty)
      */
     protected $image;
+        
+    /**
+     * @var Array<Comment> : Array of Comments of this Blogpost
+     *
+     * One Blogpost has Many Comments.
+     * @OneToMany(targetEntity="Comment", mappedBy="blogpost")
+     */
+    protected $comments;
     
     /* ----- -----  ----- ----- Constructor(s) ----- -----  ----- ----- */
     
@@ -51,6 +61,8 @@ class Blogpost {
         $this->title = $title;
         $this->content = $content;
         $this->image = $image;
+        
+        $this->comments = new ArrayCollection();
         
     }
     
@@ -126,30 +138,38 @@ class Blogpost {
     
     /**
      * Accessor 'getDate' : Returns the date of that Blogpost, with the selected format
-     * @param int $type : The wanted format (0 = DateTime (SQL), 1 = ISO, 2 = Human)
+     * @param int $type : The wanted format (0 = DateTime (SQL), 1 = ISO, 2 = Human (Long), 3 = Human (Short))
      * @return string
      */    
     public function getDate($type) {
-        
+
         if($type == 1) {
-            
+
             $datetime = new \DateTime($this->date);
             $datetime = $datetime->format(\DateTime::ATOM); // Updated ISO8601
-            
+
             return $datetime;
-            
+
         }
-        
+
         else if($type == 2) {
-            
+
             $datetime = date('l jS \o\f F Y \a\t H:i', strtotime($this->date));
-            
+
             return $datetime;
-            
+
         }
-        
+
+        else if($type == 3) {
+
+            $datetime = date('d-m-Y H:i', strtotime($this->date));
+
+            return $datetime;
+
+        }
+
         else { return $this->date; }
-        
+
     }
     
     /**
@@ -188,7 +208,31 @@ class Blogpost {
      * @return string
      */    
     public function getImage() {
+        
         return $this->image;
+    }
+    
+    /**
+     * Accessor 'getComments' : Returns the array of Comments linked to that Blogpost
+     * @param null : This function needs no parameters
+     * @return Array<Comment>
+     */
+    public function getComments() {
+        
+        return $this->comments;
+    }
+    
+    /**
+     * Accessor 'getNbComments' : Counts the number of Comments linked to that Blogpost
+     * @param null : This function needs no parameters
+     * @return int
+     */
+    public function getNbComments() {
+        
+        $nb_com = 0;
+        foreach($this->comments as $com) { $nb_com++; }
+        
+        return $nb_com;
     }
     
 //    /**

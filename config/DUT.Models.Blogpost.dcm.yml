@@ -3,8 +3,12 @@
 DUT\Models\Blogpost:
 
   # Informations
-  type: entity
   table: pwsb_blogpost # => MySQL Table Name
+  type: entity
+  oneToMany:
+    comments:
+      targetEntity: Comment
+      mappedBy: blogpost
 
   # ID(s) fields
   id:

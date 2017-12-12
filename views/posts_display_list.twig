@@ -1,4 +1,4 @@
-{# 'posts_list.twig' ~ Creates a list with all the posts and the related buttons/links #}
+{# 'posts_display_list.twig' ~ Creates a list with all the posts and the related buttons/links #}
 
 {% block posts_list %}
     <div class="posts_list">
@@ -19,8 +19,8 @@
                 {# Div containing a mini "menu" with some informations #}
                 <div class="menu">
                     <time datetime="{{ post.getDate(1) }}">{{ post.getDate(2) }}</time>
-                    <a class="btn btn-primary" href="post/{{ post.getID() }}">Read that post</a>
-                    <a href="post/{{ post.getID() }}/comments">Comments (?)</a>
+                    <a class="btn btn-primary" href="{{app.request.basepath}}/post/{{ post.getID() }}">Read that post</a>
+                    <a href="post/{{ post.getID() }}/comments">Comments ({{ post.getNbComments() }})</a>
                 </div>
                 
             </div>
@@ -28,16 +28,3 @@
         
     </div>
 {% endblock posts_list %}
-
-
-<br /><br />
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-2">UNE PLACE ICI</div>
-                <div class="col-md-2">UNE PLACE ICI</div>
-                <div class="col-md-2">UNE PLACE ICI</div>
-                <div class="col-md-2">UNE PLACE ICI</div>
-                <div class="col-md-2">UNE PLACE ICI</div>
-                <div class="col-md-2">UNE PLACE ICI</div>
-            </div>
-        </div>

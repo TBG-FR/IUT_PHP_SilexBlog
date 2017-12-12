@@ -12,33 +12,69 @@ class BlogpostsController {
     /**
      * Gets all the posts from the Database and sends them to a twig template
      */
-    public function listAction(Application $app) {
+    public function listPostsAction(Application $app) {
         
         // Gets the values from the Database
         $entityManager = $app['em'];
         $repository = $entityManager->getRepository('DUT\\Models\\Blogpost');
-        $posts = $repository->findAll();
+        $posts = $repository->findAll();        
         
+        /*$url = $app['url_generator']->generate('article',1);
+        return $app->redirect($url);*//*TEMP */
         
         // Sends those values to the twig template
-        return $app['twig']->render('posts_display.twig', ['posts' => $posts]);
+        return $app['twig']->render('page_allposts.twig', ['posts' => $posts]);
     }
 
     /**
      * Gets one single post from the Database and sends it to a twig template
      */
-    public function singleAction(Application $app) {
+    public function singlePostAction($post_index, Application $app) {
         
         // Gets the values from the Database
         $entityManager = $app['em'];
-        $repository = $entityManager->getRepository('DUT\\Models\\Blogpost');
-        $posts = $repository->findAll();
-        
+        $repository = $entityManager->getRepository('DUT\\Models\\Blogpost');        
+        $post = $entityManager->find('DUT\\Models\\Blogpost', $post_index);
         
         // Sends those values to the twig template
-        return $app['twig']->render('posts_list.twig', ['posts' => $posts]);
+        return $app['twig']->render('page_singlepost.twig', ['post' => $post, 'comments' => $post->getComments()]);
     }
     
+    /**
+     * Gets all the comments from one single post and sends it to a twig template
+     */
+    public function listCommentsAction($post_index, Application $app) {
+        
+        // Gets the values from the Database
+        $entityManager = $app['em'];
+        $repository = $entityManager->getRepository('DUT\\Models\\Blogpost');        
+        $post = $entityManager->find('DUT\\Models\\Blogpost', $post_index);
+        
+        // Sends those values to the twig template
+        return $app['twig']->render('page_allcomments.twig', ['post' => $post, 'comments' => $post->getComments(), 'out_of_post' => 1]);
+    }
+
+    /**
+     * Gets one single comment and sends it to a twig template
+     */
+    public function singleCommentAction($post_index, $com_index, Application $app) {
+        
+        // Gets the values from the Database
+        $entityManager = $app['em'];
+        $repository = $entityManager->getRepository('DUT\\Models\\Blogpost');        
+        $post = $entityManager->find('DUT\\Models\\Blogpost', $post_index);
+            
+        foreach($post->getComments() as $com) { 
+                
+            if($com->getID() == $com_index) { $comment = $com; }
+        
+        }
+        
+        if(isset($comment)) { return $app['twig']->render('page_singlecomment.twig', ['post' => $post, 'comment' => $comment]); }
+        
+        else { return $app['twig']->render('page_error.twig', ['error' => "Comment not found"]); }
+        
+    }
     
     
     /*

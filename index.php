@@ -48,7 +48,19 @@ $app->get('/', function() {
 });*/
 
 /* ===== ===== ===== Routes ~ BlogpostsController  ===== ===== ===== */
-$app->get('/', 'DUT\\Controllers\\BlogpostsController::listAction');
+$app->get('/', 'DUT\\Controllers\\BlogpostsController::listPostsAction')
+    ->bind('home');
+
+$app->get('/post/{post_index}', 'DUT\\Controllers\\BlogpostsController::singlePostAction')
+    ->bind('post');
+
+$app->get('/post/{post_index}/comments', 'DUT\\Controllers\\BlogpostsController::listCommentsAction')
+    ->bind('comments');
+
+$app->get('/post/{post_index}/comments/{com_index}', 'DUT\\Controllers\\BlogpostsController::singleCommentAction')
+    ->bind('comment');
+
+/* ===== ===== ===== Routes ~ CommentsController  ===== ===== ===== */
 
 
 
@@ -64,7 +76,7 @@ $app->get('/remove_old/{index}', 'DUT\\Controllers\\ItemsController::deleteActio
 /* ===== ===== ===== TP2 - Exercice 3 : Lister les éléments  ===== ===== ===== */
 
 $app->get('/list', 'DUT\\Controllers\\ItemsController::listAction')
-    ->bind('home');
+    ->bind('homey');
 
 $app->get('/create', 'DUT\\Controllers\\ItemsController::createAction');
 $app->post('/create', 'DUT\\Controllers\\ItemsController::createAction');

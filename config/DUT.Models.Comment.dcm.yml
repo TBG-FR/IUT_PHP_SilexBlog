@@ -1,0 +1,32 @@
+# DUT.Models.Comment.dcm.yml
+
+DUT\Models\Comment:
+
+  # Informations
+  table: pwsb_comment # => MySQL Table Name
+  type: entity
+  manyToOne:
+    blogpost:
+      targetEntity: Blogpost
+      inversedBy: comments
+      joinColumn:
+        name: id_post
+        referencedColumnName: id
+
+  # ID(s) fields
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: auto
+
+  # Other fields
+  fields:
+    date:
+      type: string
+      column: date
+      nullable: false
+    content:
+      type: string
+      column: content
+      nullable: false

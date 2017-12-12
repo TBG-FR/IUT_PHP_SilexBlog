@@ -1,0 +1,32 @@
+{# 'comments_display_single.twig' ~ Display a single comment #}
+
+{% block comment %}
+    <div class="comment">
+        
+        <div class="element">
+        
+            <div class="title info">
+                Comment <a href="{{app.request.basepath}}/post/{{ post.getID() }}/{{ comment.getID()}}" class="id">#0{{ comment.getID() }}</a>
+            </div>
+        
+            <div class="text info">
+                Posted on <time datetime="{{ post.getDate(1) }}">{{ post.getDate(2) }}</time>
+            </div>
+                
+                {# Div containing the comment's content #}
+                <div class="content">
+                    {{ comment.getContent() }}
+                </div>
+                
+                {# Div containing a mini "menu" with some informations #}
+                {# Maybe add a "Quote"/"Answer"/etc on comments...
+                <div class="menu">
+                    <time datetime="{{ post.getDate(1) }}">{{ post.getDate(2) }}</time>
+                    <a class="btn btn-primary" href="{{app.request.basepath}}/post/{{ post.getID() }}">Read that post</a>
+                    <a href="post/{{ post.getID() }}/comments">Comments ({{ post.getNbComments() }})</a>
+                </div>#}
+                
+            </div>
+        
+    </div>
+{% endblock comment %}

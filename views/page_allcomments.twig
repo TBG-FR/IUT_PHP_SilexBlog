@@ -1,0 +1,13 @@
+{# 'page_allcomments.twig' ~ Page displaying all the comments (aka the homepage here) #}
+
+{% extends "layout.twig" %}
+
+{% block head %}
+    <title>SilexBlog - {{ post.getTitle()|capitalize }}</title>
+{% endblock %}
+
+{% block body %}
+
+    {% include "comments_display_list.twig" %}
+
+{% endblock %}

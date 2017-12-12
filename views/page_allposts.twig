@@ -1,0 +1,13 @@
+{# 'page_allposts.twig' ~ Page displaying all the posts (aka the homepage here) #}
+
+{% extends "layout.twig" %}
+
+{% block head %}
+    <title>SilexBlog - Home</title>
+{% endblock %}
+
+{% block body %}
+
+    {% include "posts_display_list.twig" %}
+
+{% endblock %}

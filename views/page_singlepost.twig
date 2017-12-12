@@ -1,0 +1,15 @@
+{# 'page_singlepost.twig' ~ Page displaying one single post #}
+
+{% extends "layout.twig" %}
+
+{% block head %}
+    <title>SilexBlog - {{ post.getTitle()|capitalize }}</title>
+{% endblock %}
+
+{% block body %}
+
+    {% include "posts_display_single.twig" %}
+
+    {% include "comments_display_list.twig" %}
+
+{% endblock %}

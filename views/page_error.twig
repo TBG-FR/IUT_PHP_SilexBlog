@@ -1,0 +1,19 @@
+{# 'page_singlepost.twig' ~ Page displaying one single post #}
+
+{% extends "layout.twig" %}
+
+{% block head %}
+    <title>SilexBlog - Error...</title>
+{% endblock %}
+
+{% block body %}
+
+    <div class="text centered">
+        Error : {{ error|capitalize }}
+        
+        <br/><br/>
+        
+        <a class="btn btn-primary" href="{{app.request.basepath}}/}}">Go back to the Home</a>
+    </div>
+
+{% endblock %}

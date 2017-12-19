@@ -3,11 +3,11 @@
 {% block comments_list %}
     <div class="comments_list">
         
-        <div class="title">
+        <div class="title" id="comments">
         Comments
             
             {% if out_of_post is defined %}
-            - Post <a href="{{app.request.basepath}}/post/{{ post.getID() }}">#0{{ post.getID() }}</a>
+            - On Post <a href="{{app.request.basepath}}/post/{{ post.getID() }}">#0{{ post.getID() }}</a>
             : {{ post.getTitle()|capitalize }}
             {% endif %}
             

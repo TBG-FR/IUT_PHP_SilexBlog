@@ -18,7 +18,7 @@
                 {# Div located at the bottom of the post, with its details #}
                 <div class="bottom">
                     <time datetime="{{ post.getDate(1) }}">{{ post.getDate(2) }}</time>
-                    <a href="{{app.request.basepath}}/post/{{ post.getID() }}/comments">Comments (?)</a>
+                    <a href="{{app.request.basepath}}/post/{{ post.getID() }}/comments">Display only comments ({{ post.getNbComments() }})</a>
                 </div>
                 
             </div>

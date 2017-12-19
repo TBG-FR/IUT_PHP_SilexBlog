@@ -7,8 +7,8 @@
 /*==============================================================*/
 /* TABLES CLEANING                                              */
 /*==============================================================*/
-DROP TABLE IF EXISTS pwsb_Blogpost;
 DROP TABLE IF EXISTS pwsb_Comment;
+DROP TABLE IF EXISTS pwsb_Blogpost;
 #DROP TABLE IF EXISTS pwsb_User;
 
 
@@ -52,7 +52,7 @@ COLLATE utf8_bin;
 /*==============================================================*/
 
 ALTER TABLE pwsb_Comment ADD CONSTRAINT FK_PostComments foreign KEY (id_post)
-      REFERENCES pwsb_Blogpost(id) on delete restrict on update restrict;
+      REFERENCES pwsb_Blogpost(id) on delete cascade on update restrict;
 	  
 #alter TABLE qcmaster_Question ADD CONSTRAINT FK_QuestionQCM foreign KEY (id_QCM)
 #      references qcmaster_QCM (id) on delete restrict on update restrict;

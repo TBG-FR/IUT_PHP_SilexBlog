@@ -1,0 +1,45 @@
+{# 'page_singlepost.twig' ~ Page displaying one single post #}
+
+{% extends "layout.twig" %}
+
+{% block head %}
+
+    {% if post.getTitle() == " " %}
+        <title>SilexBlog - New Post</title>
+    {% else %}
+        <title>SilexBlog - {{ post.getTitle()|capitalize }} [Edit]</title>
+    {% endif %}
+
+{% endblock %}
+
+{% block body %}
+
+    {% block post %}
+    <div class="post edition">
+        
+        <div class="element">
+            
+            {# Div containing the title of the post #}
+            <div class="title form-group">
+                {{ post.getTitle()|capitalize }}
+                <label for="exampleTextarea">Title of the post</label>
+                <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+            </div>
+            
+            {# Div containing the first elements of the post's content #}
+            <div class="content form-group">
+                <label for="exampleTextarea">Content of the post</label>
+                <textarea class="form-control" id="exampleTextarea" rows="5" value="{{ post.getContent() }}"></textarea>
+            </div>
+            
+            {# Div located at the bottom of the post, with its details #}
+            <div class="bottom">
+                /* SUBMIT/SAVE & CANCEL BUTTONS */
+            </div>
+            
+        </div>
+        
+    </div>
+    {% endblock post %}
+
+{% endblock %}

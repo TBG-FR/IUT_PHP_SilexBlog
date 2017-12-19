@@ -7,6 +7,13 @@
         
             <div class="title info">
                 Comment <a href="{{app.request.basepath}}/post/{{ post.getID() }}/{{ comment.getID()}}" class="id">#0{{ comment.getID() }}</a>
+            
+                {% if out_of_post is defined %}
+                - On Post <a href="{{app.request.basepath}}/post/{{ post.getID() }}">#0{{ post.getID() }}</a>
+                : {{ post.getTitle()|capitalize }}
+                {% endif %}
+            
+        </div>
             </div>
         
             <div class="text info">

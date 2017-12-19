@@ -11,16 +11,24 @@
                     {{ post.getTitle()|capitalize }}
                 </div>
                 
-                {# Div containing the first elements of the post's content #}
-                <div class="content">
-                    {{ post.getShortContent() }}
-                </div>
+                {% if short is not defined %}                
+                    {# Div containing the first elements of the post's content #}
+                    <div class="content">
+                        {{ post.getShortContent() }}
+                    </div>                
+                {% endif %}
                 
                 {# Div containing a mini "menu" with some informations #}
                 <div class="menu">
                     <time datetime="{{ post.getDate(1) }}">{{ post.getDate(2) }}</time>
                     <a class="btn btn-primary" href="{{app.request.basepath}}/post/{{ post.getID() }}">Read that post</a>
-                    <a href="post/{{ post.getID() }}/comments">Comments ({{ post.getNbComments() }})</a>
+                
+                        {% if (user is defined) and (user == "admin") %}
+                            <a class="btn btn-warning" href="{{app.request.basepath}}/post/{{ post.getID() }}/edit">Edit that post</a>
+                            <a class="btn btn-danger" href="{{app.request.basepath}}/post/{{ post.getID() }}/delete">Delete that post</a>
+                        {% endif %}
+                    
+                    <a href="post/{{ post.getID() }}#comments">Comments ({{ post.getNbComments() }})</a>
                 </div>
                 
             </div>

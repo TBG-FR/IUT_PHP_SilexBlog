@@ -60,6 +60,17 @@ $app->get('/post/{post_index}/comments', 'DUT\\Controllers\\BlogpostsController:
 $app->get('/post/{post_index}/comments/{com_index}', 'DUT\\Controllers\\BlogpostsController::singleCommentAction')
     ->bind('comment');
 
+/* ===== ===== ===== Routes ~ BlogpostsController - Admin ===== ===== ===== */
+
+$app->get('/admin/posts', 'DUT\\Controllers\\BlogpostsController::listPostsShortAction')
+    ->bind('admin-posts');
+
+$app->get('/admin/newpost', 'DUT\\Controllers\\BlogpostsController::listPostsShortAction')
+    ->bind('admin-new');
+
+$app->get('/post/{post_index}/{action}', 'DUT\\Controllers\\BlogpostsController::adminPostAction')
+    ->bind('admin-action');
+
 /* ===== ===== ===== Routes ~ CommentsController  ===== ===== ===== */
 
 

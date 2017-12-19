@@ -17,13 +17,33 @@ class BlogpostsController {
         // Gets the values from the Database
         $entityManager = $app['em'];
         $repository = $entityManager->getRepository('DUT\\Models\\Blogpost');
-        $posts = $repository->findAll();        
+        $posts = $repository->findAll();
+        
+        /*$url = $app['url_generator']->generate('article',1);
+        return $app->redirect($url);*//*TEMP */
+        
+        if(isAdmin()) { return $app['twig']->render('page_allposts.twig', ['posts' => $posts, 'user' => "admin"]); }
+        else { return $app['twig']->render('page_allposts.twig', ['posts' => $posts]); }
+        
+        // Sends those values to the twig template
+        return $app['twig']->render('page_allposts.twig', ['posts' => $posts]);
+    }
+
+    /**
+     * Gets all the posts from the Database and sends them to another twig template
+     */
+    public function listPostsShortAction(Application $app) {
+        
+        // Gets the values from the Database
+        $entityManager = $app['em'];
+        $repository = $entityManager->getRepository('DUT\\Models\\Blogpost');
+        $posts = $repository->findAll();
         
         /*$url = $app['url_generator']->generate('article',1);
         return $app->redirect($url);*//*TEMP */
         
         // Sends those values to the twig template
-        return $app['twig']->render('page_allposts.twig', ['posts' => $posts]);
+        return $app['twig']->render('page_allposts.twig', ['posts' => $posts, 'short' => 1]);
     }
 
     /**
@@ -70,10 +90,59 @@ class BlogpostsController {
         
         }
         
-        if(isset($comment)) { return $app['twig']->render('page_singlecomment.twig', ['post' => $post, 'comment' => $comment]); }
+        if(isset($comment)) { return $app['twig']->render('page_singlecomment.twig', ['post' => $post, 'comment' => $comment, 'out_of_post' => 1]); }
         
         else { return $app['twig']->render('page_error.twig', ['error' => "Comment not found"]); }
         
+    }
+
+    /**
+     * Gets one single post from the Database and sends it to a twig template
+     */
+    public function newPostAction(Application $app, $action) {
+        
+        $newpost = new Blogpost(" ", " ");
+        
+        // Sends those values to the twig template
+        return $app['twig']->render('admin_editpost.twig', ['post' => $newpost]);
+    }
+
+    /**
+     * Gets one single post from the Database and sends it to a twig template
+     */
+    public function adminPostAction($post_index, Application $app, $action) {
+        
+        // Gets the values from the Database
+        $entityManager = $app['em'];
+        $repository = $entityManager->getRepository('DUT\\Models\\Blogpost');        
+        $post = $entityManager->find('DUT\\Models\\Blogpost', $post_index);
+        
+        switch($action) {
+                
+            case "edit":
+                
+                return $app['twig']->render('admin_editpost.twig', ['post' => $post]);
+                
+                break;
+                
+            case "delete":
+                
+                $entityManager->remove($post);
+                $entityManager->flush();
+        
+                $url = $app['url_generator']->generate('admin-posts');
+                return $app->redirect($url);
+                
+                break;
+                
+            default :
+                
+                /* TODO : Add error notification */
+        
+                $url = $app['url_generator']->generate('admin-posts');
+                return $app->redirect($url);
+                
+        }
     }
     
     

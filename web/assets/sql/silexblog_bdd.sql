@@ -84,6 +84,14 @@ INSERT INTO pwsb_Comment (id_post, date, content) VALUES
 (1,'2016-01-01 00:32:02','Génial, un nouveau blog !'),
 (1,'2016-02-01 14:24:40','Encore un blog voué à l\'échec...'),
 (2,'2017-12-25 00:30:06','Je n\'y crois, Monsieur, vous êtes un Charlatan ! Joyeux Noël tout de même.'),
+(1,'2016-02-01 14:24:40','Encore un blog voué à l\'échec...'),
+(2,'2017-12-25 00:30:06','Je n\'y crois, Monsieur, vous êtes un Charlatan ! Joyeux Noël tout de même.'),
+(1,'2016-02-01 14:24:40','Encore un blog voué à l\'échec...'),
+(2,'2017-12-25 00:30:06','Je n\'y crois, Monsieur, vous êtes un Charlatan ! Joyeux Noël tout de même.'),
+(1,'2016-02-01 14:24:40','Encore un blog voué à l\'échec...'),
+(2,'2017-12-25 00:30:06','Je n\'y crois, Monsieur, vous êtes un Charlatan ! Joyeux Noël tout de même.'),
+(1,'2016-02-01 14:24:40','Encore un blog voué à l\'échec...'),
+(2,'2017-12-25 00:30:06','Je n\'y crois, Monsieur, vous êtes un Charlatan ! Joyeux Noël tout de même.'),
 (2,'2017-12-24 18:30:20','J\'en ai vu une hier :O :D');
 
 /* Let's create two Teachers here */

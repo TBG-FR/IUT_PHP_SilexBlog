@@ -32,6 +32,12 @@ $app['doctrine_config'] = Setup::createYAMLMetadataConfiguration([__DIR__ . '/co
 $app['em'] = function ($app) { return EntityManager::create($app['connection'], $app['doctrine_config']); };
 
 /**
+ * USER MANAGEMENT
+ */
+function isLogged() { /* TODO : CODE */ return true; }
+function isAdmin() { /* TODO : CODE */ return true; }
+
+/**
  * ROUTES
  */
  
@@ -64,12 +70,15 @@ $app->get('/post/{post_index}/comments/{com_index}', 'DUT\\Controllers\\Blogpost
 
 $app->get('/admin/posts', 'DUT\\Controllers\\BlogpostsController::listPostsShortAction')
     ->bind('admin-posts');
+    //->before(isAdmin());
 
 $app->get('/admin/newpost', 'DUT\\Controllers\\BlogpostsController::listPostsShortAction')
     ->bind('admin-new');
+    //->before(isAdmin());
 
 $app->get('/post/{post_index}/{action}', 'DUT\\Controllers\\BlogpostsController::adminPostAction')
     ->bind('admin-action');
+    //->before(isAdmin());
 
 /* ===== ===== ===== Routes ~ CommentsController  ===== ===== ===== */
 

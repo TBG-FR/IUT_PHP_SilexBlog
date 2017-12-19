@@ -291,6 +291,17 @@ class Blogpost {
     
     /* ----- -----  ----- ----- Mutator(s) ----- -----  ----- ----- */
     
+    /**
+     * Mutator 'setCurrentDate' : Modify the date of that Post with the actual date/time
+     * @param null : This function needs no parameters
+     * @return null : This function returns nothing
+     */    
+    public function setCurrentDate() {
+                
+        $this->date = date('Y-m-d H:i:s');
+        
+    }
+    
 //    /**
 //     * Mutator 'setID' : Modify the id of that QCM
 //     * @param int $id : The new id of that QCM

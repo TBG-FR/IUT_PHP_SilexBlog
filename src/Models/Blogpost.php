@@ -311,6 +311,34 @@ class Blogpost {
 //    function setID($id) {
 //        $this->id = $id;
 //    }
+
+    /**
+     * Mutator 'setTitle' : Modify the title of that post
+     * @param string $title : The new title of that post
+     * @return null : This function returns nothing
+     */
+    function setTitle($title) {
+        $this->title = $title;
+    }
+
+    /**
+     * Mutator 'setContent' : Modify the content of that post
+     * @param string $content : The new content of that post
+     * @return null : This function returns nothing
+     */
+    function setContent($content) {
+        $this->content = $content;
+    }
+
+    /**
+     * Mutator 'setImage' : Modify the image of that post
+     * @param string $image : The new path to the image of that post
+     * @return null : This function returns nothing
+     */
+    function setImage($image) {
+        $this->image = $image;
+    }
+
 //    
 //    /**
 //     * Mutator 'setTeacherID' : Modify the Owner of that QCM

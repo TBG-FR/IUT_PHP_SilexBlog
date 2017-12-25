@@ -72,8 +72,12 @@ $app->get('/admin/posts', 'DUT\\Controllers\\BlogpostsController::listPostsShort
     ->bind('admin-posts');
     //->before(isAdmin());
 
-$app->get('/admin/newpost', 'DUT\\Controllers\\BlogpostsController::listPostsShortAction')
+$app->get('/admin/newpost', 'DUT\\Controllers\\BlogpostsController::newPostAction')
     ->bind('admin-new');
+    //->before(isAdmin());
+
+$app->post('/admin/newpost', 'DUT\\Controllers\\BlogpostsController::newPostAction')
+    ->bind('admin-new-save');
     //->before(isAdmin());
 
 $app->get('/post/{post_index}/{action}', 'DUT\\Controllers\\BlogpostsController::adminPostAction')

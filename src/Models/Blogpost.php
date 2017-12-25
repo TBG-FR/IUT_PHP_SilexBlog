@@ -54,10 +54,11 @@ class Blogpost {
      * @param string $image [can be null]
      * @return null : This function returns nothing
      */
-    public function __construct($title, $content, $image = null){
+    public function __construct($title, $content, $id = null, $image = null){
         
         $this->date = date('Y-m-d H:i:s');
         
+        $this->id = $id;
         $this->title = $title;
         $this->content = $content;
         $this->image = $image;

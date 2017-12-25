@@ -15,29 +15,36 @@
 {% block body %}
 
     {% block post %}
-    <div class="post edition">
+    <div class="post edit">
         
-        <div class="element">
+        <form action="{{app.request.basepath}}/admin/newpost" method="POST">
+
+            {# Post ID, null or taken from the Post #}
+            {% if post.getID() is defined %}
+                <input type="hidden" name="id" value="{{post.getID()}}">
+            {% else %}
+                <input type="hidden" name="id" value="null">
+            {% endif %}
             
-            {# Div containing the title of the post #}
-            <div class="title form-group">
-                {{ post.getTitle()|capitalize }}
-                <label for="exampleTextarea">Title of the post</label>
-                <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+            {# Div allowing to edit title of the post #}
+            <div class="form-group">
+                <label for="inputTitle">Title of the post</label>
+                <input name="title" type="text" class="form-control" id="inputTitle" value="{{ post.getTitle()|capitalize }}">
             </div>
             
-            {# Div containing the first elements of the post's content #}
-            <div class="content form-group">
-                <label for="exampleTextarea">Content of the post</label>
-                <textarea class="form-control" id="exampleTextarea" rows="5" value="{{ post.getContent() }}"></textarea>
+            {# Div allowing to edit the post's content #}
+            <div class="form-group">
+                <label for="inputContent">Content of the post</label>
+                <textarea name="content" class="form-control" id="inputContent" rows="5">{{ post.getContent() }}</textarea>
             </div>
             
-            {# Div located at the bottom of the post, with its details #}
+            {# Buttons displayed at the bottom of the form #}
             <div class="bottom">
-                /* SUBMIT/SAVE & CANCEL BUTTONS */
+                <button type="submit" class="btn btn-success">Save</button>
+                <a class="btn btn-danger" href="{{app.request.basepath}}/post/{{ post.getID() }}/delete">Cancel</a>
             </div>
             
-        </div>
+        </form>
         
     </div>
     {% endblock post %}

@@ -99,9 +99,48 @@ class BlogpostsController {
     /**
      * Gets one single post from the Database and sends it to a twig template
      */
-    public function newPostAction(Application $app, $action) {
+    public function newPostAction(Request $request, Application $app) {
         
-        $newpost = new Blogpost(" ", " ");
+        // Récupérer la requête, ou NULL si il n'y en a pas
+        //$post = $request->get('post', null);
+        
+             
+        $id = $request->get('id', null);
+        $title = $request->get('title', null);
+        $content = $request->get('content', null);
+        
+        var_dump($id);
+        var_dump($title);
+        var_dump($content);
+        
+        /*$url = $app['url_generator']->generate('home');
+
+        if (!is_null($name)) {
+            
+            try {
+                
+            // Création d'un nouvel Item
+            $newItem = new Item($name);
+            
+            // "Validation" puis Ajout à la BD
+            $entityManager->persist($newItem);
+            $entityManager->flush();
+            }
+            
+            catch (Exception $e) {
+                
+                //echo 'Exception reçue : ',  $e->getMessage(), "\n";
+                $this->storage->addElement($e->getMessage());                           
+                
+            }
+
+            return $app->redirect($url);
+        }*/
+        
+        // Récupérer l'entity manager (Permet la manipulation des Entity => BD)
+        //$entityManager = $app['em'];        
+        
+        $newpost = new Blogpost("", "");
         
         // Sends those values to the twig template
         return $app['twig']->render('admin_editpost.twig', ['post' => $newpost]);

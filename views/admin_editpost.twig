@@ -36,6 +36,12 @@
             <div class="form-group">
                 <label for="inputContent">Content of the post</label>
                 <textarea name="content" class="form-control" id="inputContent" rows="5">{{ post.getContent() }}</textarea>
+                
+                <script>
+                    // Replaces the <textarea id="inputContent"> with a CKEditor instance.
+                    CKEDITOR.replace( 'inputContent' );
+                </script>
+                
             </div>
             
             {# Buttons displayed at the bottom of the form #}

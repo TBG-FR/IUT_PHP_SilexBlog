@@ -4,7 +4,7 @@
 
 {% block head %}
 
-    {% if post.getTitle() == " " %}
+    {% if post.getTitle() == '' %}
         <title>SilexBlog - New Post</title>
     {% else %}
         <title>SilexBlog - {{ post.getTitle()|capitalize }} [Edit]</title>
@@ -41,7 +41,7 @@
             {# Buttons displayed at the bottom of the form #}
             <div class="bottom">
                 <button type="submit" class="btn btn-success">Save</button>
-                <a class="btn btn-danger" href="{{app.request.basepath}}/post/{{ post.getID() }}/delete">Cancel</a>
+                <a class="btn btn-danger" href="{{app.request.basepath}}/admin/posts">Cancel</a>
             </div>
             
         </form>

@@ -139,7 +139,9 @@ class Blogpost {
      */    
     public function getShortcontent() {
         
-        $shortcontent = substr($this->content, 0, 300);
+        //$shortcontent = substr($this->content, 0, 300);
+        $shortcontent = strip_tags($this->content);
+        $shortcontent = substr($shortcontent, 0, 300);
         
         return $shortcontent;
     }

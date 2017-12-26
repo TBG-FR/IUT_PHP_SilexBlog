@@ -14,7 +14,7 @@
                 {% if short is not defined %}                
                     {# Div containing the first elements of the post's content #}
                     <div class="content">
-                        {{ post.getShortContent() }}
+                        {{ post.getShortContent() | raw }}
                     </div>                
                 {% endif %}
                 

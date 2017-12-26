@@ -12,7 +12,7 @@
                 
                 {# Div containing the first elements of the post's content #}
                 <div class="content">
-                    {{ post.getContent() }}
+                    {{ post.getContent() | raw  }}
                 </div>
                 
                 {# Div located at the bottom of the post, with its details #}

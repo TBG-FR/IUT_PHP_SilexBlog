@@ -1,0 +1,15 @@
+
+
+#yourEntity.repository:
+#        class: %mybundle.yourEntity.repository.class%
+#        factory_service: doctrine.orm.entity_manager
+#        factory_method: getRepository
+#        arguments:
+#            - MyBundle\Entity\Myentity
+
+User.repository:
+        class: %DUT.User.repository.class%
+        factory_service: doctrine.orm.entity_manager
+        factory_method: getRepository
+        arguments:
+            - DUT\Entity\User

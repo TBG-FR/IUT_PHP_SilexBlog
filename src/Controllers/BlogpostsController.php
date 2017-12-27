@@ -1,11 +1,11 @@
 <?php
 
 namespace DUT\Controllers;
+use DUT\Models\Blogpost;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Silex\Application;
-use DUT\Models\Blogpost;
 
 /**
  * @class BlogpostsController
@@ -26,7 +26,7 @@ class BlogpostsController {
         /*$url = $app['url_generator']->generate('article',1);
         return $app->redirect($url);*//*TEMP */
 
-        if(isAdmin()) { return $app['twig']->render('page_allposts.twig', ['posts' => $posts, 'user' => "admin"]); } /* TEMP */
+        if($app['user']->isAdmin()) { return $app['twig']->render('page_allposts.twig', ['posts' => $posts, 'user' => "admin"]); } /* TEMP */
         else { return $app['twig']->render('page_allposts.twig', ['posts' => $posts]); }
 
         //        // Sends those values to the twig template
@@ -121,8 +121,7 @@ class BlogpostsController {
 
         // IF some values have been entered (=> this isn't a new post)
         if( is_null($title) == false && is_null($content) == false) {
-
-            // Gets the values from the Database
+            
             $entityManager = $app['em'];
 
             // IF there is no content (=> probably an error)
@@ -153,7 +152,7 @@ class BlogpostsController {
 
                     catch (Exception $e) {
 
-                        echo 'Exception : ',  $e->getMessage(), "\n";
+                        echo 'Exception : ',  $e->getMessage(), '\n';
                         //$this->storage->addElement($e->getMessage());                           
 
                     }

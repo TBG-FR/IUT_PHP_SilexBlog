@@ -19,7 +19,10 @@
                 {# Div containing comment's details #}
                 <div class="info">
                     <a href="{{app.request.basepath}}/post/{{ post.getID() }}/comments/{{ comment.getID()}}" class="id">#0{{ comment.getID() }}</a>
+                    -
                     <time datetime="{{ comment.getDate(1) }}">{{ comment.getDate(3) }}</time>
+                    -
+                    by <a href="#NOT_YET_IMPLEMENTED">{{ comment.getUser().getUsername() }}</a>
                 </div>
                 
                 {# Div containing the comment's content #}

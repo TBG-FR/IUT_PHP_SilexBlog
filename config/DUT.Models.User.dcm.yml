@@ -1,0 +1,33 @@
+# DUT.Models.User.dcm.yml
+
+DUT\Models\User:
+
+  # Informations
+  table: pwsb_user # => MySQL Table Name
+  type: entity
+  oneToMany:
+    comments:
+      targetEntity: Comment
+      mappedBy: user
+
+  # ID(s) fields
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: auto
+
+  # Other fields
+  fields:
+    username:
+      type: string
+      column: username
+      nullable: false
+    password:
+      type: string
+      column: password
+      nullable: false
+    admin:
+      type: boolean
+      column: admin
+      nullable: false

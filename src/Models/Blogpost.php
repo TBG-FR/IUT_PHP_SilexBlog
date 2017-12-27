@@ -49,9 +49,7 @@ class Blogpost {
     
     /**
      * Blogpost's Constructor with values
-     * @param string $title
-     * @param string $content
-     * @param string $image [can be null]
+     * @params : Class' attributes
      * @return null : This function returns nothing
      */
     public function __construct($title, $content, $id = null, $image = null){
@@ -75,6 +73,7 @@ class Blogpost {
      * @return int
      */    
     public function getID() {
+        
         return $this->id;
     }
     
@@ -120,6 +119,7 @@ class Blogpost {
      * @return string
      */    
     public function getTitle() {
+        
         return $this->title;
     }
     
@@ -129,6 +129,7 @@ class Blogpost {
      * @return string
      */    
     public function getContent() {
+        
         return $this->content;
     }
     
@@ -197,7 +198,7 @@ class Blogpost {
      * @param string $title : The new title of that post
      * @return null : This function returns nothing
      */
-    function setTitle($title) {
+    public function setTitle($title) {
         $this->title = $title;
     }
 
@@ -206,7 +207,7 @@ class Blogpost {
      * @param string $content : The new content of that post
      * @return null : This function returns nothing
      */
-    function setContent($content) {
+    public function setContent($content) {
         $this->content = $content;
     }
 
@@ -215,120 +216,16 @@ class Blogpost {
      * @param string $image : The new path to the image of that post
      * @return null : This function returns nothing
      */
-    function setImage($image) {
+    public function setImage($image) {
         $this->image = $image;
     }
-
-//    
-//    /**
-//     * Mutator 'setTeacherID' : Modify the Owner of that QCM
-//     * @param int $tid : The new Owner id of that QCM
-//     * @return null : This function returns nothing
-//     */
-//    function setTeacherID($tid) {
-//        $this->teacher_id = $tid;
-//    }
-//    /**
-//     * Mutator 'setTitle' : Modify the title of that QCM
-//     * @param string $title : The new title of that QCM
-//     * @return null : This function returns nothing
-//     */
-//    function setTitle($title) {
-//        $this->title = $title;
-//    }
-//    /**
-//     * Mutator 'setTopic' : Modify the title of that QCM
-//     * @param string $title : The new title of that QCM
-//     * @return null : This function returns nothing
-//     */
-//    function setTopic($topic) {
-//        $this->topic = $topic;
-//    }
-//    /**
-//     * Mutator 'setLink' : Modify the link of that QCM
-//     * @param string $link : The new link of that QCM
-//     * @return null : This function returns nothing
-//     */
-//    function setLink($link) {
-//        $this->link = $link;
-//    }
-//    
-//    /**
-//     * Mutator 'setQuestions' : Modify the answers array of that QCM
-//     * @param array<Question> $questions : The new array of questions
-//     * @return null : This function returns nothing
-//     */
-//    function setQuestions($questions) {
-//        $this->questions = $questions;
-//    }
-//
-//    /**
-//     * Mutator 'setQuestion' : Modify a specific answer
-//     * @param string $id : The id of the question to change
-//     * @param string $question : The new question
-//     * @return null : This function returns nothing
-//     */
-//    function setQuestion($id, $question) {
-//        
-//        //$this->question[$id] = new Question()
-//    }
     
     /* ----- -----  ----- ----- Method(s) ----- -----  ----- ----- */
     
-////    /**
-////     * Function 'addQuestion' : to add a question to the QCM 
-////     * @param Question $question
-////     * @return null : This function returns nothing
-////     */
-//     function addQuestion($question){
-//        $this->questions[]=$question;
-//        
-//    }
-////    /**
-////     * Function 'saveIntoDB' : to save the QCM into the Database 
-////     * @param Database DB
-////     * @return bool worked
-////     */
-////    private function saveIntoDB($DB){
-////        
-////        //CODE
-////        
-////        return true;
-////    }
-////    
-////    /**
-////     * Function 'correction' : to check the match between the subject and the answers
-////     * @param QCM answeredQCM
-////     * @return bool worked
-////     */
-////    private function correction($answeredQCM){
-////        
-////        //CODE
-////        
-////        return true;
-////    }
-////    
-////    /**
-////     * Function 'display' : to check the match between the subject and the answers
-////     * @param null : This function needs no parameters
-////     * @return null : This function returns nothing
-////     */
-//    public function display(){
-//        echo '<h2>'.$this->title.'<h2>';
-//        echo '<h3>'.$this->topic.'<h3></br>';
-//        foreach ($this->questions as $question){
-//            echo '</br>'.$question->getTitle().'</br>';
-//            foreach($question->getAnswers() as $answer){
-//                echo $answer->getProposition()."       ".$answer->getCorrect()."</br>";
-//                
-//            }
-//        }
-//        
-//        
-//    }
-    
+    /* CODE */
     
     /* ----- -----  ----- ----- End of Class ----- -----  ----- ----- */
+    
 }
 
-// End of file ~ We don't close the PHP tag here, in order to avoid inserting invisible characters
+// End of file ~ We do not close the PHP tag here, in order to avoid inserting invisible characters

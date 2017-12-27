@@ -1,0 +1,52 @@
+{# 'user_auth.twig' ~ Page allowing users to Login & Register #}
+
+{% extends "layout.twig" %}
+
+{% block head %}
+    <title>SilexBlog - Authentification</title>
+{% endblock %}
+
+{% block body %}
+
+    <div id='inline-forms'>
+
+        <!-- Logging Form -->
+        <div id='login'>
+
+            <p class='title'>Login</p><br />
+
+            <form class='text' action='{{app.request.basepath}}/auth' method='post'>
+                
+                Username : <input type='text' name='username' value='' required> <br />
+                Password : <input type='password' name='password' placeholder='Enter your password' required> <br />
+                <!-- ADD : Captcha [] -->
+
+                <br />
+                <input type='hidden' name='type' value='login'/>                
+                <input type='submit' value='Login'>
+            </form>
+
+        </div>
+
+        <!-- Registering Form -->
+        <div id='register'>
+
+            <p class='title'>Register</p><br />
+
+            <form class='text' action='{{app.request.basepath}}/auth' method='post'>
+                
+                Username : <input type='text' name='username' value='' required> <br />
+                Password : <input type='password' name='password' placeholder='Enter your desired password' required> <br />
+                Password (Repeat) : <input type='password' name='password_verif' placeholder='Repeat your desired  password' required> <br />
+                <!-- ADD : Captcha [] -->
+
+                <br />
+                <input type='hidden' name='type' value='register'/>                
+                <input type='submit' value='Register'>
+            </form>
+
+        </div>
+    </div>
+
+{% endblock %}
+

@@ -12,6 +12,12 @@ DUT\Models\Comment:
       joinColumn:
         name: id_post
         referencedColumnName: id
+    user:
+      targetEntity: User
+      inversedBy: comments
+      joinColumn:
+        name: id_user
+        referencedColumnName: id
 
   # ID(s) fields
   id:

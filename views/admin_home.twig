@@ -1,0 +1,25 @@
+{# 'admin_home.twig' ~ Page displaying a sort of Admin panel #}
+
+{% extends "layout.twig" %}
+
+{% block head %}
+    <title>SilexBlog - Home [Admin]</title>
+{% endblock %}
+
+{% block body %}
+
+    <div class='menu'>
+        <!-- Management - Title -->
+        <p class='title'>{{ user.getUsername() }} - Admin Panel</p><br />
+        
+        <!-- Management - Links -->
+        <a href='{{app.request.basepath}}/home' class='btn btn-primary btn-block btntext' role='button'>Home</a>
+        <a href='{{app.request.basepath}}/admin/newpost' class='btn btn-primary btn-block btntext' role='button'>Create a new Post</a>
+        <a href='{{app.request.basepath}}/admin/posts' class='btn btn-primary btn-block btntext' role='button'>Manage Posts</a>
+        <a href='#NOT_YET_IMPLEMENTED' class='btn btn-warning btn-block btntext' role='button'>Manage Comments</a>
+        <a href='#NOT_YET_IMPLEMENTED' class='btn btn-warning btn-block btntext' role='button'>Manage Users</a>
+        <a href='#NOT_YET_IMPLEMENTED' class='btn btn-warning btn-block btntext' role='button'>Another Button</a>
+        <a href='{{app.request.basepath}}/auth/logout' class='btn btn-danger btn-block btntext' role='button'>Log out</a>
+    </div>
+
+{% endblock %}

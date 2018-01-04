@@ -6,35 +6,40 @@
         <div class="element">
         
             <div class="title info">
-                Comment <a href="{{app.request.basepath}}/post/{{ post.getID() }}/{{ comment.getID()}}" class="id">#0{{ comment.getID() }}</a>
+                Comment <a href="{{app.request.basepath}}/post/{{ post.getID() }}/{{ comment.getID()}}" class="id">#{{ comment.getID() }}</a>
             
                 {% if out_of_post is defined %}
-                - On Post <a href="{{app.request.basepath}}/post/{{ post.getID() }}">#0{{ post.getID() }}</a>
-                : {{ post.getTitle()|capitalize }}
+                    - On Post <a href="{{app.request.basepath}}/post/{{ post.getID() }}">#{{ post.getID() }}</a>
+                    : {{ post.getTitle()|capitalize }}
                 {% endif %}
             
-        </div>
             </div>
         
-            <div class="text info">
+            <div class="text details">
                 Posted on <time datetime="{{ post.getDate(1) }}">{{ post.getDate(2) }}</time>
-                by <a href="#NOT_YET_IMPLEMENTED">{{ comment.getUser().getUsername() }}</a>
+                
+                {% if comment.getUser().getUsername() is defined %}
+                    by <a href="#NOT_YET_IMPLEMENTED">{{ comment.getUser().getUsername() }}</a>
+                {% else %}
+                    by Unknown
+                {% endif %}
             </div>
                 
-                {# Div containing the comment's content #}
-                <div class="content">
-                    {{ comment.getContent() }}
-                </div>
+            {# Div containing the comment's content #}
+            <div class="content">
+                {{ comment.getContent() | raw }}
+            </div>
                 
-                {# Div containing a mini "menu" with some informations #}
-                {# Maybe add a "Quote"/"Answer"/etc on comments...
+            {# Div containing a mini "menu" #}                
+            {% if (user is defined) and (comment.getUser().getUsername() is defined) and (comment.getUser().getID() == user.getID()) %}
                 <div class="menu">
-                    <time datetime="{{ post.getDate(1) }}">{{ post.getDate(2) }}</time>
-                    <a class="btn btn-primary" href="{{app.request.basepath}}/post/{{ post.getID() }}">Read that post</a>
-                    <a href="post/{{ post.getID() }}/comments">Comments ({{ post.getNbComments() }})</a>
-                </div>#}
+                    <a class="btn btn-warning" href="{{app.request.basepath}}/post/{{ post.getID() }}/comments/{{ comment.getID() }}/edit">Edit</a>
+                    <a class="btn btn-danger" href="{{app.request.basepath}}/post/{{ post.getID() }}/comments/{{ comment.getID() }}/delete">Delete</a>
+                    <a class="btn btn-primary" href="{{app.request.basepath}}/post/{{ post.getID() }}/comments">Go back to the Comments</a>
+                </div>
+            {% endif %}
                 
-            </div>
+        </div>
         
     </div>
 {% endblock comment %}

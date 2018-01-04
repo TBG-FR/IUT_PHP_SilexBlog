@@ -115,6 +115,15 @@ class Comment {
     }
 
     /**
+     * Accessor 'getPost' : Returns the Post which hosts that Comment
+     * @param null : This function needs no parameters
+     * @return string
+     */    
+    public function getPost() {
+        return $this->blogpost;
+    }
+
+    /**
      * Accessor 'getUser' : Returns the author of that Comment
      * @param null : This function needs no parameters
      * @return string
@@ -124,8 +133,44 @@ class Comment {
     }
 
     /* ----- -----  ----- ----- Mutator(s) ----- -----  ----- ----- */
+    
+    /**
+     * Mutator 'setCurrentDate' : Modify the date of that Comment with the actual date/time
+     * @param null : This function needs no parameters
+     * @return null : This function returns nothing
+     */    
+    public function setCurrentDate() {
+                
+        $this->date = date('Y-m-d H:i:s');
+        
+    }
 
-    /* CODE */
+    /**
+     * Mutator 'setContent' : Modify the content of that Comment
+     * @param string $content : The new content of that Comment
+     * @return null : This function returns nothing
+     */
+    public function setContent($content) {
+        $this->content = $content;
+    }
+
+    /**
+     * Mutator 'setUser' : Modify the author which wrote that Comment
+     * @param User $user : The new User related to that Comment
+     * @return null : This function returns nothing
+     */
+    public function setUser($user) {
+        $this->user = $user;
+    }
+
+    /**
+     * Mutator 'setPost' : Modify the Post which hosts that Comment
+     * @param Blogpost $post : The new Post hosting that Comment
+     * @return null : This function returns nothing
+     */
+    public function setPost($post) {
+        $this->blogpost = $post;
+    }
 
     /* ----- -----  ----- ----- Method(s) ----- -----  ----- ----- */
 

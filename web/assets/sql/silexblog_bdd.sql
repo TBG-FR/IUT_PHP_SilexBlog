@@ -39,7 +39,7 @@ CREATE TABLE pwsb_Comment
     id_post     INT NOT NULL,
     id_user     INT,
     date        DATETIME NOT NULL,
-    content     VARCHAR(240) NOT NULL,
+    content     VARCHAR(2000) NOT NULL,
     
     PRIMARY KEY (id)
 )

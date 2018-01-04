@@ -1,0 +1,69 @@
+{# 'comments_edit.twig' ~ Page displaying Comment edition forms #}
+
+{% extends "layout.twig" %}
+
+{% block head %}
+
+    {% if comment.getID() == '' %}
+        <title>SilexBlog - New Comment</title>
+    {% else %}
+        <title>SilexBlog - Comment #{{ comment.getID() }} [Edit]</title>
+    {% endif %}
+
+{% endblock %}
+
+{% block body %}
+
+    {% block comment %}
+    <div class="comment edit">
+        
+        <div class="title info">
+            
+            Edition of 
+            
+            {% if comment.getID() is defined %}
+                Comment #{{ comment.getID() }}
+            {% else %}
+                New Comment
+            {% endif %}
+            
+            On Post <a href="{{app.request.basepath}}/post/{{ postID }}">#{{ postID }}</a>
+            {% if comment.getPost().getTitle() is defined %}
+                : {{ comment.getPost().getTitle()|capitalize }}
+            {% endif %}
+        
+        </div>
+        
+        <form action="{{app.request.basepath}}/post/{{ postID }}/comments/new/" method="POST">
+
+            {# Comment ID, null or taken from the Comment #}
+            {% if comment.getID() is defined %}
+                <input type="hidden" name="id" value="{{comment.getID()}}">
+            {% else %}
+                <input type="hidden" name="id" value="null">
+            {% endif %}
+            
+            {# Div allowing to edit the Comment's content #}
+            <div class="form-group">
+                <label for="inputContent">Content of the comment</label>
+                <textarea name="content" class="form-control" id="inputContent" rows="5">{{ comment.getContent() }}</textarea>
+                
+                <script>
+                    // Replaces the <textarea id="inputContent"> with a CKEditor instance, with custom settings (we need less settings for a comment than for a post).
+                    CKEDITOR.replace( 'inputContent', { toolbar : [ ['Bold','Italic','Font'] ] })
+                </script>
+                
+            </div>
+            
+            {# Buttons displayed at the bottom of the form #}
+            <div class="bottom">
+                <button type="submit" class="btn btn-success">Save</button>
+                <a class="btn btn-danger" href="{{app.request.basepath}}/post/{{ postID }}/comments">Cancel</a>
+            </div>
+            
+        </form>
+        
+    </div>
+    {% endblock comment %}
+
+{% endblock %}

@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;
+use Silex\Application\UrlGeneratorTrait;
 
 //This should be a service, but it is complicated (Doctrine ORM with Silex, Entities, Repositories, etc...)
 //use DUT\Models\UserManagement;
@@ -59,6 +60,9 @@ $app->get('/', function() {
 });*/
 
 /* ===== ===== ===== Routes ~ BlogpostsController  ===== ===== ===== */
+$app->get('/error', 'DUT\\Controllers\\BlogpostsController::errorAction')
+    ->bind('error');
+
 $app->get('/', 'DUT\\Controllers\\BlogpostsController::listPostsAction')
     ->bind('home');
 
@@ -75,7 +79,7 @@ $app->get('/post/{post_index}/comments/{com_index}', 'DUT\\Controllers\\Blogpost
 
 $app->get('/admin/posts', 'DUT\\Controllers\\BlogpostsController::listPostsShortAction')
     ->bind('admin-posts');
-    //->before(isAdmin());
+    //->before($app['user']->isAdmin());
 
 $app->get('/admin/newpost', 'DUT\\Controllers\\BlogpostsController::newPostAction')
     ->bind('admin-new');
@@ -91,7 +95,17 @@ $app->get('/post/{post_index}/{action}', 'DUT\\Controllers\\BlogpostsController:
 
 /* ===== ===== ===== Routes ~ CommentsController  ===== ===== ===== */
 
-    /* ROUTES */
+$app->get('/post/{post_index}/comments/new/', 'DUT\\Controllers\\BlogpostsController::newCommentAction');
+    //->bind('admin-new');
+    //->before(isAdmin());
+
+$app->post('/post/{post_index}/comments/new/', 'DUT\\Controllers\\BlogpostsController::newCommentAction');
+    //->bind('admin-new-save');
+    //->before(isAdmin());
+
+$app->get('/post/{post_index}/comments/{com_index}/{action}', 'DUT\\Controllers\\BlogpostsController::manageCommentAction');
+    //->bind('admin-action');
+    //->before(isAdmin());
 
 /* ===== ===== ===== Routes ~ UsersController  ===== ===== ===== */
 

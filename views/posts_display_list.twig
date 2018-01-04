@@ -1,4 +1,4 @@
-{# 'posts_display_list.twig' ~ Creates a list with all the posts and the related buttons/links #}
+{# 'posts_display_list.twig' ~ Displays a list with all the posts and the related buttons/links #}
 
 {% block posts_list %}
     <div class="posts_list">
@@ -18,17 +18,22 @@
                     </div>                
                 {% endif %}
                 
-                {# Div containing a mini "menu" with some informations #}
-                <div class="menu">
-                    <time datetime="{{ post.getDate(1) }}">{{ post.getDate(2) }}</time>
-                    <a class="btn btn-primary" href="{{app.request.basepath}}/post/{{ post.getID() }}">Read that post</a>
-                
-                        {% if (user is defined) and (user == "admin") %}
+                {# Div containing informations and action buttons #}
+                <div class="info">
+                    
+                    <span class="details">
+                        <time datetime="{{ post.getDate(1) }}">{{ post.getDate(2) }}</time>
+                        <a href="post/{{ post.getID() }}#comments">Comments ({{ post.getNbComments() }})</a>
+                    </span>
+                    
+                    <span class="menu">
+                        <a class="btn btn-primary" href="{{app.request.basepath}}/post/{{ post.getID() }}">Read that post</a>                
+                        {% if (user is defined) and (user.getAdmin() == 1) %}
                             <a class="btn btn-warning" href="{{app.request.basepath}}/post/{{ post.getID() }}/edit">Edit that post</a>
                             <a class="btn btn-danger" href="{{app.request.basepath}}/post/{{ post.getID() }}/delete">Delete that post</a>
                         {% endif %}
+                    </span>
                     
-                    <a href="post/{{ post.getID() }}#comments">Comments ({{ post.getNbComments() }})</a>
                 </div>
                 
             </div>

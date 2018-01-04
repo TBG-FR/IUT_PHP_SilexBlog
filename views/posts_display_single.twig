@@ -1,27 +1,38 @@
-{# 'posts_display_single.twig' ~ Display a single post #}
+{# 'posts_display_single.twig' ~ Displays a single post #}
 
 {% block post %}
     <div class="post">
         
         <div class="element">
                 
-                {# Div containing the title of the post #}
-                <div class="title">
-                    {{ post.getTitle()|capitalize }}
-                </div>
+            {# Div containing the title of the post #}
+            <div class="title">
+                {{ post.getTitle()|capitalize }}
+            </div>
+            
+            {# Div containing the first elements of the post's content #}
+            <div class="content">
+                {{ post.getContent() | raw  }}
+            </div>
+            
+            {# Div located at the bottom of the post, with its details #}
+            <div class="info">
                 
-                {# Div containing the first elements of the post's content #}
-                <div class="content">
-                    {{ post.getContent() | raw  }}
-                </div>
-                
-                {# Div located at the bottom of the post, with its details #}
-                <div class="bottom">
+                <span class="details">
                     <time datetime="{{ post.getDate(1) }}">{{ post.getDate(2) }}</time>
                     <a href="{{app.request.basepath}}/post/{{ post.getID() }}/comments">Display only comments ({{ post.getNbComments() }})</a>
-                </div>
+                </span>
+                               
+                {% if (user is defined) and (user.getAdmin() == 1) %}
+                    <span class="menu">
+                            <a class="btn btn-warning" href="{{app.request.basepath}}/post/{{ post.getID() }}/edit">Edit that post</a>
+                            <a class="btn btn-danger" href="{{app.request.basepath}}/post/{{ post.getID() }}/delete">Delete that post</a>
+                    </span>
+                {% endif %}
                 
             </div>
+                
+        </div>
         
     </div>
 {% endblock post %}

@@ -34,6 +34,11 @@
                         <span class="menu">
                              - 
                             <a class="btn btn-sm btn-warning" href="{{app.request.basepath}}/post/{{ post.getID() }}/comments/{{ comment.getID() }}/edit">Edit</a>
+                            <a class="btn btn-sm btn-danger" href="{{app.request.basepath}}/post/{{ post.getID() }}/comments/{{ comment.getID() }}/delete">Remove</a>
+                        </span>                    
+                    {% elseif (user is defined) and (user.getAdmin() == '1') %}
+                        <span class="menu">
+                             - 
                             <a class="btn btn-sm btn-danger" href="{{app.request.basepath}}/post/{{ post.getID() }}/comments/{{ comment.getID() }}/delete">Delete</a>
                         </span>
                     {% endif %}

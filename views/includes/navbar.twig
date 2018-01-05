@@ -1,4 +1,4 @@
-{# 'layout.twig' ~ Base HTML template #}
+{# 'navbar.twig' ~ Navbar, displaying navigation buttons/links #}
 
 <lu>
 
@@ -7,19 +7,35 @@
     </li>
 
     <li>
-    <a href="{{app.request.basepath}}/auth">Login</a>
+    <a href="{{app.request.basepath}}/">Another Link</a>
     </li>
 
-    <li>
-    <a href="{{app.request.basepath}}/auth/logout">Logout</a>
-    </li>
-
-    <li>
-    <a href="{{app.request.basepath}}/">Oth</a>
-    </li>
-
-    <li>
-    <a href="{{app.request.basepath}}/">Ano</a>
-    </li>
+    {% if (user is defined) %}
+    
+        {% if (user.getAdmin() == '1') %}   {# Admin Navbar #}
+    
+            <li>
+            <a href="{{app.request.basepath}}/auth">Admin Panel</a>
+            </li>
+    
+        {% else %}   {# User Navbar #}
+    
+            <li>
+            <a href="{{app.request.basepath}}/auth">User Panel</a>
+            </li>
+        
+        {% endif %}
+    
+        <li>
+        <a href="{{app.request.basepath}}/auth/logout">Logout</a>
+        </li>
+    
+    {% else %}   {# Guest Navbar #}
+    
+        <li>
+        <a href="{{app.request.basepath}}/auth">Login</a>
+        </li>
+    
+    {% endif %}
 
 </lu>

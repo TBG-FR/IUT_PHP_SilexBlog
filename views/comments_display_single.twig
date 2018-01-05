@@ -30,14 +30,18 @@
                 {{ comment.getContent() | raw }}
             </div>
                 
-            {# Div containing a mini "menu" #}                
+            {# Div containing a mini "menu" #}       
+            <div class="menu">  
+                
             {% if (user is defined) and (comment.getUser().getUsername() is defined) and (comment.getUser().getID() == user.getID()) %}
-                <div class="menu">
                     <a class="btn btn-warning" href="{{app.request.basepath}}/post/{{ post.getID() }}/comments/{{ comment.getID() }}/edit">Edit</a>
-                    <a class="btn btn-danger" href="{{app.request.basepath}}/post/{{ post.getID() }}/comments/{{ comment.getID() }}/delete">Delete</a>
-                    <a class="btn btn-primary" href="{{app.request.basepath}}/post/{{ post.getID() }}/comments">Go back to the Comments</a>
-                </div>
+                    <a class="btn btn-danger" href="{{app.request.basepath}}/post/{{ post.getID() }}/comments/{{ comment.getID() }}/delete">Remove</a>
+            {% elseif (user is defined) and (user.getAdmin() == '1') %}
+                    <a class="btn btn-danger" href="{{app.request.basepath}}/post/{{ post.getID() }}/comments/{{ comment.getID() }}/delete">Delete</a>                
             {% endif %}
+                
+                    <a class="btn btn-primary" href="{{app.request.basepath}}/post/{{ post.getID() }}/comments">Go back to the Comments</a>
+            </div>
                 
         </div>
         

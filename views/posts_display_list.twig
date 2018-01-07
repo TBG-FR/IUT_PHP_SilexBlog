@@ -6,6 +6,13 @@
         {% for post in posts %}
             <div class="element">
                 
+                {% if short is not defined and post.getImage() is not empty %}  
+                    {# Image of the post, resized #}
+                    <div class="image">
+                        <img src="__DIR__ . '/../../web/posts_imgs/{{ post.getImage() }}" alt='Image for the post "{{ post.getTitle()|capitalize }}" : "{{ post.getImage() }}"' height="300px">
+                    </div>        
+                {% endif %}
+                
                 {# Div containing the title of the post #}
                 <div class="title">
                     {{ post.getTitle()|capitalize }}

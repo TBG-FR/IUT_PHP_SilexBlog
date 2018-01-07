@@ -10,6 +10,13 @@
                 {{ post.getTitle()|capitalize }}
             </div>
             
+            {% if post.getImage() is not empty %}
+                {# Image of the post, resized #}
+                <div class="image">
+                    <img src="__DIR__ . '/../../web/posts_imgs/{{ post.getImage() }}" alt='Image for the post "{{ post.getTitle()|capitalize }}" : "{{ post.getImage() }}"' height="650px">
+                </div>
+            {% endif %}
+            
             {# Div containing the first elements of the post's content #}
             <div class="content">
                 {{ post.getContent() | raw  }}

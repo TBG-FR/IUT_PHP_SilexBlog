@@ -48,13 +48,13 @@ class UsersController {
                     catch (Exception $e) {
                         
                         //echo $e->getMessage();
-                        $_SESSION['errors'] = $e->getMessage();
+                        //$_SESSION['errors'] = $e->getMessage();
                         
-                        /*if($e->getMessage() == 'Err_BadCredentials') {                             
+                        if($e->getMessage() == 'Err_BadCredentials') {                             
                             echo "<div class='notification alert alert-danger' role='alert'>Error : Wrong User/Password combination ! Please try again.</div>"; }
                         
                         else if ($e->getMessage() == 'Err_UnknownUsername') {
-                            echo "<div class='notification alert alert-danger' role='alert'>Error : Unknown Username ! Please try again.</div>"; }*/
+                            echo "<div class='notification alert alert-danger' role='alert'>Error : Unknown Username ! Please try again.</div>"; }
                         
                     }
 
@@ -66,9 +66,7 @@ class UsersController {
             // => Try to Register this User
             case "register":
                     
-                    try { 
-                        
-                        
+                    try {
                         
                         if(UserManagement::constructByRegister($app, $id, $pass, $pass_v)) { $_SESSION['user'] = UserManagement::constructByLogin($app, $id, $pass);  }
                     
@@ -77,16 +75,16 @@ class UsersController {
                     catch (Exception $e) {
                         
                         //echo $e->getMessage();
-                        $_SESSION['errors'] = $e->getMessage();
+                        //$_SESSION['errors'] = $e->getMessage();
                         
-                        /*if($e->getMessage() == 'Err_UsernameExists') {                             
+                        if($e->getMessage() == 'Err_UsernameExists') {                             
                             echo "<div class='notification alert alert-danger' role='alert'>Error : Username already taken ! Please try again with another one.</div>"; }
                         
                         else if ($e->getMessage() == 'Err_PasswordMatch') {
                             echo "<div class='notification alert alert-danger' role='alert'>Error : Passwords aren't matching ! Please try again.</div>"; }
                         
                         else if ($e->getMessage() == 'Err_RegisterFail') {
-                            echo "<div class='notification alert alert-danger' role='alert'>Error : Registering failed ! Please try again or Contact us.</div>"; }}*/
+                            echo "<div class='notification alert alert-danger' role='alert'>Error : Registering failed ! Please try again or Contact us.</div>"; }
                         
                     }
 

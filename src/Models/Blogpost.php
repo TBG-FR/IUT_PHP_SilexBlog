@@ -134,7 +134,7 @@ class Blogpost {
     }
     
     /**
-     * Accessor 'getShortcontent' : Returns the first 300 characters of that Blogpost's content
+     * Accessor 'getShortcontent' : Returns the first 300 chars of the content, without HTML tags (prevents for "bugs" like cutting in the middle of a tag (div, strong, ...))
      * @param null : This function needs no parameters
      * @return string
      */    

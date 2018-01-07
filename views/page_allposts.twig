@@ -3,7 +3,13 @@
 {% extends "layout.twig" %}
 
 {% block head %}
+
+    {% if short is defined %}
+    <title>SilexBlog - Posts [Admin]</title>
+    {% else %}
     <title>SilexBlog - Home</title>
+    {% endif %}
+
 {% endblock %}
 
 {% block body %}

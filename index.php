@@ -41,23 +41,10 @@ $app['em'] = function ($app) { return EntityManager::create($app['connection'], 
  */
 session_start();
 $app['user'] = new UserManagement($app['em']);
-var_dump($_SESSION['user']);
 
 /**
  * ROUTES
  */
- 
-// ROUTE : Base ('/')
-/*
-$app->get('/', function() {
-    $html = '<h1>ProjetWeb - TP3</h1>';
-    $html .= ' <br/>/list 
-				<br/>/create
-				<br/>/remove/{i}
-				<br/>/check/{i}';
-    
-    return new Response($html);
-});*/
 
 /* ===== ===== ===== Routes ~ BlogpostsController  ===== ===== ===== */
 $app->get('/error', 'DUT\\Controllers\\BlogpostsController::errorAction')
@@ -81,6 +68,10 @@ $app->get('/admin/posts', 'DUT\\Controllers\\BlogpostsController::listPostsShort
     ->bind('admin-posts');
     //->before($app['user']->isAdmin());
 
+$app->get('/admin/comments', 'DUT\\Controllers\\BlogpostsController::listAllCommentsAction')
+    ->bind('admin-comments');
+    //->before($app['user']->isAdmin());
+
 $app->get('/admin/newpost', 'DUT\\Controllers\\BlogpostsController::newPostAction')
     ->bind('admin-new');
     //->before(isAdmin());
@@ -96,19 +87,18 @@ $app->get('/post/{post_index}/{action}', 'DUT\\Controllers\\BlogpostsController:
 /* ===== ===== ===== Routes ~ CommentsController  ===== ===== ===== */
 
 $app->get('/post/{post_index}/comments/new/', 'DUT\\Controllers\\BlogpostsController::newCommentAction');
-    //->bind('admin-new');
+    //->bind('');
     //->before(isAdmin());
 
 $app->post('/post/{post_index}/comments/new/', 'DUT\\Controllers\\BlogpostsController::newCommentAction');
-    //->bind('admin-new-save');
+    //->bind('');
     //->before(isAdmin());
 
 $app->get('/post/{post_index}/comments/{com_index}/{action}', 'DUT\\Controllers\\BlogpostsController::manageCommentAction');
-    //->bind('admin-action');
+    //->bind('');
     //->before(isAdmin());
 
 /* ===== ===== ===== Routes ~ UsersController  ===== ===== ===== */
-
 
 $app->get('/auth', 'DUT\\Controllers\\UsersController::authAction')
     ->bind('auth');
@@ -122,29 +112,7 @@ $app->get('/auth/logout', 'DUT\\Controllers\\UsersController::logoutAction')
     ->bind('auth-logout');
     //->before(isAdmin());
 
-
-/* ===== ===== ===== Routes & Co [Sujet]  ===== ===== ===== */
-$app->get('/list_old', 'DUT\\Controllers\\ItemsController::listAction_OLD')
-    ->bind('home_OLD');
-
-$app->get('/create_old', 'DUT\\Controllers\\ItemsController::createAction_OLD');
-$app->post('/create_old', 'DUT\\Controllers\\ItemsController::createAction_OLD');
-
-$app->get('/remove_old/{index}', 'DUT\\Controllers\\ItemsController::deleteAction_OLD');
-
-/* ===== ===== ===== TP2 - Exercice 3 : Lister les éléments  ===== ===== ===== */
-
-$app->get('/list', 'DUT\\Controllers\\ItemsController::listAction')
-    ->bind('homey');
-
-$app->get('/create', 'DUT\\Controllers\\ItemsController::createAction');
-$app->post('/create', 'DUT\\Controllers\\ItemsController::createAction');
-
-$app->get('/remove/{index}', 'DUT\\Controllers\\ItemsController::deleteAction');
-
-$app->get('/check/{index}', 'DUT\\Controllers\\ItemsController::checkAction');
-
-/* ===== ===== ===== TP3 - Twig  ===== ===== ===== */
+/* ===== ===== ===== Routes ~ Tests  ===== ===== ===== */
 
 $app->get('/test/{name}', function ($name) use ($app) {
     return $app['twig']->render('hello.twig', array(
@@ -155,6 +123,8 @@ $app->get('/test/{name}', function ($name) use ($app) {
 $app->get('/test', function () use ($app) {
     return $app['twig']->render('hello.twig');
 });
+
+/* ===== ===== ===== Routes ~ End of Road  ===== ===== ===== */
 
 /**
  * RUN & DEBUG
@@ -234,11 +204,21 @@ class UserManagement {
 
             }
 
-            else { throw new Exception('Err_BadCredentials'); }
+            else {
+                
+                throw new Exception('Err_BadCredentials');
+                //$_SESSION['msg'] = "Error : Wrong Username/Password combination !";
+            
+            }
 
         }
 
-        else { throw new Exception('Err_UnknownUsername'); }
+        else { 
+            
+            throw new Exception('Err_UnknownUsername');
+            //$_SESSION['msg'] = "Error : Unknown Username !";
+            
+        }
 
     }
 
@@ -256,10 +236,20 @@ class UserManagement {
         $userRequested = $repository->findOneBy(array('username' => $login));
 
         // If an User with the same Username has been found => Throw Exception
-        if( is_null($userRequested) == false ) { throw new Exception('Err_UsernameExists'); }
+        if( is_null($userRequested) == false ) {
+            
+            throw new Exception('Err_UsernameExists');
+            //$_SESSION['msg'] = "Error : This Username already exists !";
+        
+        }
 
         // Else, If the Password and the "Verification Password" aren't the same => Throw Exception
-        else if ( $pass != $pass_v ) { throw new Exception('Err_PasswordMatch'); }
+        else if ( $pass != $pass_v ) {
+            
+            throw new Exception('Err_PasswordMatch');
+            //$_SESSION['msg'] = "Error : The passwords aren't matching !";
+        
+        }
 
         // Else, add the User into the Database
         else {

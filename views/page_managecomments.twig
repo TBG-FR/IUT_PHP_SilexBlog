@@ -1,0 +1,20 @@
+{# 'page_managecomments.twig' ~ Similar to 'page_allcomments.twig', but here we take all the comments of the site, not all the comments on one post #}
+
+{% extends "layout.twig" %}
+
+{% block head %}
+    <title>SilexBlog - Comments [Admin]</title>
+{% endblock %}
+
+{% block body %}
+
+    <h1 class="centered hline-bottom">WIP : This Page isn't finished yet !</h1>
+    <h2 class="centered title">Manage all comments posted on the Blog</h2>
+
+    {% for post in posts %}
+
+        {% include 'comments_display_list.twig' with { 'post':post, 'comments':post.getComments() } %}
+
+    {% endfor %}
+
+{% endblock %}

@@ -17,9 +17,9 @@ class BlogpostsController {
     
     /* ===== ===== ===== Actions related to Posts ===== ===== ===== */
     
-    /* ===== ===== ===== Actions related to Comments ===== ===== ===== */
+    /* ===== ===== ===== Admin Actions on Posts ===== ===== ===== */
     
-    /* ===== ===== ===== Actions related to Admin Actions ===== ===== ===== */
+    /* ===== ===== ===== Actions related to Comments ===== ===== ===== */
     
     /* ===== ===== ===== Other Actions (errors, etc) ===== ===== ===== */
 
@@ -363,12 +363,13 @@ class BlogpostsController {
             $id = $request->get('id', null);
             $title = $request->get('title', null);
             $content = $request->get('content', null);
-            $image = $request->get('image', null);
-
-            var_dump($id); /* TEMP */
-            var_dump($title); /* TEMP */
-            var_dump($content); /* TEMP */
-
+            
+            // Gets & generates the values related to post's image
+            $directory = __DIR__ . '/../../web/posts_imgs/';
+            $image_file = $request->files->get('image', null);            
+            if(is_null($image_file) == false) { $image_name = $image_file->getClientOriginalName(); }
+            else { $image_name = null; }
+            
             // IF some values have been entered (=> this isn't a new post)
             if( is_null($title) == false && is_null($content) == false) {
 
@@ -393,11 +394,14 @@ class BlogpostsController {
                         try {
 
                             // Creates a new post
-                            $newpost = new Blogpost($title, $content, null, $image);
+                            $newpost = new Blogpost($title, $content, null, $image_name);
 
                             // Inserts the entry to the DB
                             $entityManager->persist($newpost);
                             $entityManager->flush();
+                            
+                            if(is_null($image_name) == false) {$image_file->move($directory, $image_name);}
+                            
                         }
 
                         catch (Exception $e) {
@@ -419,11 +423,13 @@ class BlogpostsController {
 
                             $postToUpdate->setTitle($title);
                             $postToUpdate->setContent($content);
-                            $postToUpdate->setImage($image);
+                            if(is_null($image_name) == false) {$postToUpdate->setImage($image_name);}
 
                             // Updates the entry in the DB
                             $entityManager->persist($postToUpdate);
                             $entityManager->flush();
+                            
+                            if(is_null($image_name) == false) {$image_file->move($directory, $image_name);}       
 
                         }
 
@@ -451,7 +457,7 @@ class BlogpostsController {
                 $newpost = new Blogpost("", "");
 
                 // Sends those values to the twig template
-                return $app['twig']->render('admin_editpost.twig', ['post' => $newpost]);
+                return $app['twig']->render('admin_editpost.twig', ['post' => $newpost, 'user' => $_SESSION['user']]);
 
             }
             
@@ -484,7 +490,7 @@ class BlogpostsController {
 
                 case "edit":
 
-                    return $app['twig']->render('admin_editpost.twig', ['post' => $post]);
+                    return $app['twig']->render('admin_editpost.twig', ['post' => $post, 'user' => $_SESSION['user']]);
 
                     break;
 

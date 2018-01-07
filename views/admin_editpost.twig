@@ -17,7 +17,7 @@
     {% block post %}
     <div class="post edit">
         
-        <form action="{{app.request.basepath}}/admin/newpost" method="POST">
+        <form action="{{app.request.basepath}}/admin/newpost" method="POST" enctype="multipart/form-data">
 
             {# Post ID, null or taken from the Post #}
             {% if post.getID() is defined %}
@@ -44,10 +44,39 @@
                 
             </div>
             
+            {# Div allowing to edit the image of the post #}            
+            <div class="form-group">
+                <label for="inputImage">Image of the post</label>
+
+                <input type="file" name="image" class="form-control" id="inputImage">
+                
+                <small id="helpImage" class="form-text text-muted">
+                    
+                    {% if post.getImage() is null %}
+                        <span class="text-danger">
+                            <span class="fa fa-warning"></span>
+                            No image have been uploaded for this post  
+                            <span class="fa fa-warning"></span>
+                        </span>
+                    {% else %}
+                        <span class="text-success">
+                            <span class="fa fa-check"></span>
+                            Current image : {{ post.getImage() }}  
+                            <span class="fa fa-check"></span>
+                        </span>
+                    {% endif %}
+                    
+                    <em>(if you don't want to add/change this post's image, simply leave this field empty !)</em>
+                </small>
+                
+            </div>
+            
+            <br/>
+            
             {# Buttons displayed at the bottom of the form #}
             <div class="bottom">
-                <button type="submit" class="btn btn-success">Save</button>
-                <a class="btn btn-danger" href="{{app.request.basepath}}/admin/posts">Cancel</a>
+                <button type="submit" class="btn btn-success">Save this post !</button>
+                <a class="btn btn-danger" href="{{app.request.basepath}}/admin/posts">Cancel (<em>all unsaved changes will be lost !</em>)</a>
             </div>
             
         </form>

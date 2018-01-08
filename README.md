@@ -1,7 +1,6 @@
 
 # IUT_SilexBlog
 Website (in fact, Blog) made for "Projet Web" lessons @ Lyon1 University
-Live version available at http://tom-brian-garcia.tk/proj/pw-silexblog
 
 # How to test it
 

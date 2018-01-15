@@ -10,10 +10,10 @@ use Silex\Application;
 use Silex\Application\UrlGeneratorTrait;
 
 /**
- * @class BlogpostsController
- * Manages all actions related to the blog (posts & comments)
+ * @class BlogController
+ * Manages all actions related to the blog (posts, comments, admin functionnalities)
  */
-class BlogpostsController {
+class BlogController {
     
     /* ===== ===== ===== Actions related to Posts [Display] ===== ===== ===== */
 
@@ -25,7 +25,8 @@ class BlogpostsController {
         // Gets the values from the Database
         $entityManager = $app['em'];
         $repository = $entityManager->getRepository('DUT\\Models\\Blogpost');
-        $posts = $repository->findAll();
+        //$posts = $repository->findAll();
+        $posts = $repository->findBy(array(),array('date' => 'DESC'));
         
         // Returns the corresponding page, based on the user state (logged or not)        
         if($app['user']->isLogged() == false) {
@@ -264,9 +265,10 @@ class BlogpostsController {
             // Gets the values from the Database
             $entityManager = $app['em'];
             $repository = $entityManager->getRepository('DUT\\Models\\Blogpost');
-            $posts = $repository->findAll();
+            //$posts = $repository->findAll();
+            $posts = $repository->findBy(array(),array('date' => 'DESC'));
             
-            return $app['twig']->render('page_allposts.twig', ['posts' => $posts, 'short' => 1, 'user' => $_SESSION['user']]);
+            return $app['twig']->render('admin_allposts.twig', ['posts' => $posts, 'short' => 1, 'user' => $_SESSION['user']]);
             
         }
     }
@@ -290,7 +292,8 @@ class BlogpostsController {
             // Gets the values from the Database
             $entityManager = $app['em'];
             $repository = $entityManager->getRepository('DUT\\Models\\Blogpost');
-            $posts = $repository->findAll();
+            //$posts = $repository->findAll();
+            $posts = $repository->findBy(array(),array('date' => 'ASC'));;
             
             return $app['twig']->render('page_managecomments.twig', ['posts' => $posts, 'user' => $_SESSION['user']]);
             //return $app['twig']->render('page_managecomments.twig', ['posts' => $posts, 'out_of_post' => 1, 'user' => $_SESSION['user']]);

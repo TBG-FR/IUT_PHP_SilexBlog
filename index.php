@@ -47,54 +47,54 @@ $app['user'] = new UserManagement($app['em']);
  */
 
 /* ===== ===== ===== Routes ~ BlogpostsController  ===== ===== ===== */
-$app->get('/error', 'DUT\\Controllers\\BlogpostsController::errorAction')
+$app->get('/error', 'DUT\\Controllers\\BlogController::errorAction')
     ->bind('error');
 
-$app->get('/', 'DUT\\Controllers\\BlogpostsController::listPostsAction')
+$app->get('/', 'DUT\\Controllers\\BlogController::listPostsAction')
     ->bind('home');
 
-$app->get('/post/{post_index}', 'DUT\\Controllers\\BlogpostsController::singlePostAction')
+$app->get('/post/{post_index}', 'DUT\\Controllers\\BlogController::singlePostAction')
     ->bind('post');
 
-$app->get('/post/{post_index}/comments', 'DUT\\Controllers\\BlogpostsController::listCommentsAction')
+$app->get('/post/{post_index}/comments', 'DUT\\Controllers\\BlogController::listCommentsAction')
     ->bind('comments');
 
-$app->get('/post/{post_index}/comments/{com_index}', 'DUT\\Controllers\\BlogpostsController::singleCommentAction')
+$app->get('/post/{post_index}/comments/{com_index}', 'DUT\\Controllers\\BlogController::singleCommentAction')
     ->bind('comment');
 
 /* ===== ===== ===== Routes ~ BlogpostsController - Admin ===== ===== ===== */
 
-$app->get('/admin/posts', 'DUT\\Controllers\\BlogpostsController::listPostsShortAction')
+$app->get('/admin/posts', 'DUT\\Controllers\\BlogController::listPostsShortAction')
     ->bind('admin-posts');
     //->before($app['user']->isAdmin());
 
-$app->get('/admin/comments', 'DUT\\Controllers\\BlogpostsController::listAllCommentsAction')
+$app->get('/admin/comments', 'DUT\\Controllers\\BlogController::listAllCommentsAction')
     ->bind('admin-comments');
     //->before($app['user']->isAdmin());
 
-$app->get('/admin/newpost', 'DUT\\Controllers\\BlogpostsController::newPostAction')
+$app->get('/admin/newpost', 'DUT\\Controllers\\BlogController::newPostAction')
     ->bind('admin-new');
     //->before(isAdmin());
 
-$app->post('/admin/newpost', 'DUT\\Controllers\\BlogpostsController::newPostAction')
+$app->post('/admin/newpost', 'DUT\\Controllers\\BlogController::newPostAction')
     ->bind('admin-new-save');
     //->before(isAdmin());
 
-$app->get('/post/{post_index}/{action}', 'DUT\\Controllers\\BlogpostsController::adminPostAction')
+$app->get('/post/{post_index}/{action}', 'DUT\\Controllers\\BlogController::adminPostAction')
     ->bind('admin-action');
     //->before(isAdmin());
 
 /* ===== ===== ===== Routes ~ CommentsController  ===== ===== ===== */
 
-$app->get('/post/{post_index}/comments/new/', 'DUT\\Controllers\\BlogpostsController::newCommentAction');
+$app->get('/post/{post_index}/comments/new/', 'DUT\\Controllers\\BlogController::newCommentAction');
     //->bind('');
     //->before(isAdmin());
 
-$app->post('/post/{post_index}/comments/new/', 'DUT\\Controllers\\BlogpostsController::newCommentAction');
+$app->post('/post/{post_index}/comments/new/', 'DUT\\Controllers\\BlogController::newCommentAction');
     //->bind('');
     //->before(isAdmin());
 
-$app->get('/post/{post_index}/comments/{com_index}/{action}', 'DUT\\Controllers\\BlogpostsController::manageCommentAction');
+$app->get('/post/{post_index}/comments/{com_index}/{action}', 'DUT\\Controllers\\BlogController::manageCommentAction');
     //->bind('');
     //->before(isAdmin());
 

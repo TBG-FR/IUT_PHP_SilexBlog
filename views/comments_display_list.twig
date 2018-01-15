@@ -14,14 +14,14 @@
         </div>
     
         {% for comment in comments %}
-            <div class="element">
+            <div class="element card">
                 
                 {# Div containing informations and action buttons #}
-                <div class="info">
+                <div class="info card-header">
                     
                     <span class="details">
-                        <a href="{{app.request.basepath}}/post/{{ post.getID() }}/comments/{{ comment.getID() }}" class="id">#{{ comment.getID() }}</a> - 
-                        <time datetime="{{ comment.getDate(1) }}">{{ comment.getDate(3) }}</time> - 
+                        <a href="{{app.request.basepath}}/post/{{ post.getID() }}/comments/{{ comment.getID() }}" class="id badge badge-primary">#{{ comment.getID() }}</a> 
+                        <time datetime="{{ comment.getDate(1) }}">{{ comment.getDate(3) }}</time> 
                         
                         {% if comment.getUser().getUsername() is defined %}
                             by <a href="#NOT_YET_IMPLEMENTED">{{ comment.getUser().getUsername() }}</a>
@@ -30,30 +30,37 @@
                         {% endif %}
                     </span>
                     
-                    {% if (user is defined) and (comment.getUser().getUsername() is defined) and (comment.getUser().getID() == user.getID()) %}
-                        <span class="menu">
-                             - 
+                    <span class="menu btn-group btn-sm" role="group" aria-label="Actions related to this comment">
+                        
+                            <a class="btn btn-sm btn-secondary" href="#NOT_YET_IMPLEMENTED">Report</a>
+                        
+                            {% if (user is defined) and (comment.getUser().getUsername() is defined) and (comment.getUser().getID() == user.getID()) %}
                             <a class="btn btn-sm btn-warning" href="{{app.request.basepath}}/post/{{ post.getID() }}/comments/{{ comment.getID() }}/edit">Edit</a>
                             <a class="btn btn-sm btn-danger" href="{{app.request.basepath}}/post/{{ post.getID() }}/comments/{{ comment.getID() }}/delete">Remove</a>
-                        </span>                    
-                    {% elseif (user is defined) and (user.getAdmin() == '1') %}
-                        <span class="menu">
-                             - 
+                            {% elseif (user is defined) and (user.getAdmin() == '1') %}
                             <a class="btn btn-sm btn-danger" href="{{app.request.basepath}}/post/{{ post.getID() }}/comments/{{ comment.getID() }}/delete">Delete</a>
-                        </span>
-                    {% endif %}
+                            {% endif %}
+                    
+                    </span>
                     
                 </div>
                 
                 {# Div containing the comment's content #}
-                <div class="content">
+                <div class="content card-body">
                     {{ comment.getContent() | raw }}
                 </div>
                 
             </div>
         {% endfor %}
         
-        <a class="btn btn-primary" href="{{app.request.basepath}}/post/{{ post.getID() }}/comments/new/">Add a new comment</a>
+        <span class="btn-group btn-sm" role="group" aria-label="Actions related to that post (comments)">
+            
+            <a class="btn btn-lg btn-primary" href="{{app.request.basepath}}/post/{{ post.getID() }}/comments/new/">Add a new comment</a>
+            {% if out_of_post is defined %}
+                <a class="btn btn-lg btn-secondary" href="{{app.request.basepath}}/post/{{ post.getID() }}/comments">Go back to the Post</a>
+            {% endif %}
+        
+        </span>
         
     </div>
 {% endblock comments_list %}

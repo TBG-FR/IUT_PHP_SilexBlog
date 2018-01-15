@@ -95,7 +95,7 @@ class Blogpost {
 
         else if($type == 2) {
 
-            $datetime = date('l jS \o\f F Y \a\t H:i', strtotime($this->date));
+            $datetime = date('l \t\h\e jS \o\f F Y \a\t H:i', strtotime($this->date));
 
             return $datetime;
 
@@ -103,7 +103,7 @@ class Blogpost {
 
         else if($type == 3) {
 
-            $datetime = date('d-m-Y H:i', strtotime($this->date));
+            $datetime = date('d-m-Y \a\t H:i', strtotime($this->date));
 
             return $datetime;
 
@@ -121,6 +121,16 @@ class Blogpost {
     public function getTitle() {
         
         return $this->title;
+    }
+    
+    /**
+     * Accessor 'getImage' : Returns the image of that Blogpost
+     * @param null : This function needs no parameters
+     * @return string
+     */    
+    public function getImage() {
+        
+        return $this->image;
     }
     
     /**
@@ -142,19 +152,9 @@ class Blogpost {
         
         //$shortcontent = substr($this->content, 0, 300);
         $shortcontent = strip_tags($this->content);
-        $shortcontent = substr($shortcontent, 0, 300);
+        $shortcontent = substr($shortcontent, 0, 600);
         
         return $shortcontent;
-    }
-    
-    /**
-     * Accessor 'getImage' : Returns the image of that Blogpost
-     * @param null : This function needs no parameters
-     * @return string
-     */    
-    public function getImage() {
-        
-        return $this->image;
     }
     
     /**

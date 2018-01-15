@@ -1,41 +1,43 @@
 {# 'navbar.twig' ~ Navbar, displaying navigation buttons/links #}
 
-<lu>
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark justify-content-center" id="nav">
+    <ul class="navbar-nav">
 
-    <li>
-    <a href="{{app.request.basepath}}/">Home</a>
-    </li>
+        <li class="nav-item">
+            <a href="{{app.request.basepath}}/" class="nav-link" >Home</a>
+        </li>
 
-    <li>
-    <a href="{{app.request.basepath}}/">Another Link</a>
-    </li>
+        <li class="nav-item">
+            <a href="{{app.request.basepath}}/" class="nav-link" >Another Link</a>
+        </li>
 
-    {% if (user is defined) %}
-    
-        {% if (user.getAdmin() == '1') %}   {# Admin Navbar #}
-    
-            <li>
-            <a href="{{app.request.basepath}}/auth">Admin Panel</a>
+        {% if (user is defined) %}
+
+            {% if (user.getAdmin() == '1') %}   {# Admin Navbar #}
+
+                <li class="nav-item">
+                    <a href="{{app.request.basepath}}/auth" class="nav-link" >Admin Panel</a>
+                </li>
+
+            {% else %}   {# User Navbar #}
+
+                <li>
+                    <a href="{{app.request.basepath}}/auth" class="nav-link" >User Panel</a>
+                </li>
+
+            {% endif %}
+
+            <li class="nav-item">
+                <a href="{{app.request.basepath}}/auth/logout" class="nav-link" >Logout</a>
             </li>
-    
-        {% else %}   {# User Navbar #}
-    
-            <li>
-            <a href="{{app.request.basepath}}/auth">User Panel</a>
+
+        {% else %}   {# Guest Navbar #}
+
+            <li class="nav-item">
+                <a href="{{app.request.basepath}}/auth" class="nav-link" >Login</a>
             </li>
-        
+
         {% endif %}
-    
-        <li>
-        <a href="{{app.request.basepath}}/auth/logout">Logout</a>
-        </li>
-    
-    {% else %}   {# Guest Navbar #}
-    
-        <li>
-        <a href="{{app.request.basepath}}/auth">Login</a>
-        </li>
-    
-    {% endif %}
 
-</lu>
+    </ul>
+</nav>

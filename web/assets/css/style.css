@@ -1,5 +1,4 @@
-/* Fichier CSS Custom */
-/* Nothing here for now */
+/* ----- ----- ----- CSS Custom File ----- ----- ----- */
 
 /* ----- Added Fonts & Font Modifications ----- */
 
@@ -74,108 +73,317 @@ strong { text-shadow: 1px 0px 1px currentColor; /* 1px 0px 0px pour enlever le "
     border-bottom: 2px solid #000;
 }
 
-.centered {
+.centered { text-align: center; }
+
+/* ----- ----- Header Elements ----- ----- */
+
+header {
     
-    text-align: center;
+    width: 95%;
+    
+    margin: auto;
+    margin-top: 2.5vh;
+    margin-bottom: 5vh;
     
 }
 
-/* ----- -----  Page Content ----- ----- */
+#subheader {
+    
+    text-align: center;
+    
+    color: whitesmoke;
+    font-family: 'Russo One','Trebuchet MS', Arial, sans-serif;
+    font-size: calc(2em + 2.5vw);
+    
+}
+
+/* ----- Navbar ----- */
+
+#nav ul li {
+    
+    margin-left: 2.5vw;
+    margin-right: 2.5vw;
+    
+}
+
+#nav ul li a {
+    
+    color: whitesmoke;
+    
+    text-transform: uppercase;
+    font-family: 'Archive','Trebuchet MS', Arial, sans-serif;
+    font-size: calc(1em + 1vw);
+    
+}
+
+#nav ul li a:hover {
+    
+    color: #428bca;
+    text-decoration: overline underline;
+
+}
+
+/* ----- ----- Page Content ----- ----- */
+
+h1.title {
+    
+    margin-bottom: 2.5vh;
+    text-decoration: underline;
+    
+}
 
 .content {
 
     width: 95%;
-    margin: 2.5%;
-
-    /*text-align:center;
-
-    width: 95%;
-    text-align: center;
-    margin: auto;*/
+    margin: auto;
 
 }
 
-.posts_list {
+.usermenu > .btn {
+
+    font-family: 'Archive','Trebuchet MS', Arial, sans-serif; /* Fonts, in order of appearance */
+    font-size: calc(1em + 1vh);
     
 }
+
+/* ----- Blogposts (List) ----- */
 
 .posts_list > .element {
     
+    background-color: lightgrey;
     border-style: solid;
+    
+    margin-bottom: 2.5vh;
+    padding: 2.5vh;
+    
+}
+
+.posts_list > .element > .image {
+    
+    margin-bottom: 2.5vh;
+    
+}
+
+.posts_list > .element > .image > img {
+    
+    max-height: 400px;
+    width: auto;
+    display: block;
     
 }
 
 .posts_list > .element > .title {
     
-    /*font-size: calc(1.5em + 1.5vh);
-    color: red;*/
+    font-size: calc(1em + 1.5vh);
+    
+    margin-left: 5vw;
+    margin-bottom: 1.5vh;
     
 }
 
 .posts_list > .element > .content {
     
-    /*font-size: calc(1em + 0.5vh);
-    color: orange;*/
+    /**/
+    
+    margin-bottom: 2.5vh;
+    
+}
+
+.posts_list > .element > .info > .details {
+    
+    font-style: italic;
+    margin-left: 2.5vw;
+    margin-right: 2.5vw;
     
 }
 
 .posts_list > .element > .menu {
     
-    /*font-size: calc(1em + 0.5vh);
-    color: yellow;*/
+    /* TODO : Align right (stick to right side) */
     
 }
-/*
-.itemlist {
 
-    margin-top: 2.5%;
-    margin-bottom: 2.5%;
+/* ----- Blogposts (Single) ----- */
 
+.post > .element {
+    
+    background-color: lightgrey;
+    border-style: solid;
+    
+    margin-bottom: 5vh;
+    padding: 2.5vh;
+    
 }
 
-.itemlist > .list {
+.post > .element > .title {
+    
+    font-size: calc(1.5em + 3vw);
+    
+    margin-left: 5vw;
+    margin-bottom: 1.5vh;
+    
+}
 
-    font-family: 'ChampagneBold','Trebuchet MS', Arial, sans-serif; /* Fonts, in order of appearance //*
+.post > .element > .image {
+    
+    margin: auto;
+    margin-bottom: 5vh;
+    width: 95%;
+    
+}
+
+.post > .element > .image > img {
+    
+    max-height: 750px;
+    width: auto;
+    
+    border: 5px solid #428bca;/*lightslategray/dimgrey*/
+    
+    display: block;
+    margin: auto;
+    
+}
+
+.post > .element > .content {
+    
+    font-size: 1.20em;
+    margin-bottom: 5vh;
+    
+}
+
+.post > .element > .info > .details {
+    
+    font-size: 1.20em;
+    font-style: italic;
+    /*text-decoration: underline overline;*/
+    
+    margin-right: 5vw;
+    
+}
+
+.post > .element > .info > .menu > .btn {
+    
+    font-size: 1.20em;
+    /* TODO : Align right (stick to right side) */
+    
+}
+
+/* ----- Comments (List) ----- */
+
+.comments_list > .title {
+    
     font-size: calc(1em + 1vh);
-    list-style: none;
     
-    //width: 50%;
-
-}
-
-.itemlist > .list > .element {
-
-    background-color: rgba(155,155,155,0.5);
-    border-radius: 1vw;
+    margin-left: 5vw;
+    margin-bottom: 1.5vh;
     
-    margin-top: 0.5vw;
-    margin-bottom: 0.5vw;
-    padding: 0.5vw;
-
 }
 
-.qcm_list {
-    /*display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;//*
-    list-style: none;
+.comments_list > .element {
+    
+    /*width: 45%;*/
+    
+    background-color: darkgrey;
+    
+    margin-bottom: 2vh;
+    
 }
 
-.qcm_list_element {
-    padding: 0.75rem 1rem;
-    margin-bottom: 1rem;
-    background-color: #e9ecef;
-    border-radius: 0.25rem;
+.comments_list > .element > .content {
+    
+    /* */
+    
 }
-*/
 
-/*
-ALL
-THE
-REST
----
-CSS
-CODE
-HERE
-*/
+.comments_list > .element > .info > .details {
+    
+    margin-right: 2.5vw;
+    
+}
+
+.comments_list > .element > .info > .details > time {
+    
+    font-style: italic;
+    margin-left: 0.5vw;
+    margin-right: 0.5vw;
+    
+}
+
+.comments_list > .element > .info > .details > .menu {
+    
+    /* TODO : Align right (stick to right side) */
+    
+}
+
+/* ----- Comments (Single) ----- */
+
+.comment > .element > .title {
+    
+    font-size: calc(1em + 1.5vh);
+    
+    /*margin-left: 5vw;
+    margin-bottom: 1.5vh;*/
+    
+}
+
+.comment > .element {
+    
+    /*width: 45%;*/
+    
+    background-color: darkgrey;
+    
+    margin-bottom: 2vh;
+    
+}
+
+.comment > .element > .content {
+    
+    font-size: calc(1em + 1vh);
+    
+}
+
+.comment > .element > .details {
+    
+    margin-right: 2.5vw;
+    font-size: calc(1em + 0.75vh);
+    
+}
+
+.comment > .element > .details > time {
+    
+    font-style: italic;
+    margin-left: 0.5vw;
+    margin-right: 0.5vw;
+    
+}
+
+.comment > .element > .info > .details > .menu {
+    
+    /* TODO : Align right (stick to right side) */
+    
+}
+
+/* ----- ----- Footer ----- ----- */
+
+footer {
+    
+    width: 95%;
+    
+    padding: 1vh;
+    
+    margin: auto;
+    margin-top: 5vh;
+    margin-bottom: 2.5vh;
+    
+}
+
+#legal {
+    
+    text-align: center;
+    
+    color: whitesmoke;
+    font-family: 'Champagne','Trebuchet MS', Arial, sans-serif;
+    font-size: calc(1em + 0.5vw);
+}
+
+/* ----- ----- ----- EOF - CSS Custom File ----- ----- ----- */

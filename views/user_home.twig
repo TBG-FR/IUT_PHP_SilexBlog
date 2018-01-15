@@ -1,6 +1,6 @@
 {# 'user_home.twig' ~ Page displaying the User panel #}
 
-{% extends "layout.twig" %}
+{% extends "includes/layout.twig" %}
 
 {% block head %}
     <title>SilexBlog - Home [User]</title>
@@ -8,17 +8,17 @@
 
 {% block body %}
 
-    <div class='menu'>
+    <div class='usermenu'>
         
         <!-- Connected - Header -->
-        <p class='title'>{{ user.getUsername() }} - User Panel</p><br />
+        <h1 class='title centered'>♦ {{ user.getUsername() }} ♦ - User Panel</h1><br />
         
         <!-- Management - Links -->
-        <a href='{{app.request.basepath}}/' class='btn btn-primary btn-block btntext' role='button'>Home</a>
-        <a href='#NOT_YET_IMPLEMENTED' class='btn btn-primary btn-block btntext' role='button'>Account Informations</a>
-        <a href='#NOT_YET_IMPLEMENTED' class='btn btn-warning btn-block btntext' role='button'>Manage my Comments</a>
-        <a href='#NOT_YET_IMPLEMENTED' class='btn btn-warning btn-block btntext' role='button'>Another Button</a>
-        <a href='{{app.request.basepath}}/auth/logout' class='btn btn-danger btn-block btntext' role='button'>Log out</a>
+        <a href='{{app.request.basepath}}/' class='btn btn-primary btn-block' role='button'>Website Home</a>
+        <a href='#NOT_YET_IMPLEMENTED' class='btn btn-primary btn-block' role='button'>Account Informations</a>
+        <a href='#NOT_YET_IMPLEMENTED' class='btn btn-warning btn-block' role='button'>Manage my Comments</a>
+        <a href='#NOT_YET_IMPLEMENTED' class='btn btn-warning btn-block' role='button'>Another Button</a>
+        <a href='{{app.request.basepath}}/auth/logout' class='btn btn-danger btn-block' role='button'>Log out</a>
     </div>
 
 {% endblock %}

@@ -3,19 +3,19 @@
 {% block comment %}
     <div class="comment">
         
-        <div class="element">
+        <div class="element card">
         
-            <div class="title info">
-                Comment <a href="{{app.request.basepath}}/post/{{ post.getID() }}/{{ comment.getID()}}" class="id">#{{ comment.getID() }}</a>
+            <div class="title info card-header">
+                Comment <a href="{{app.request.basepath}}/post/{{ post.getID() }}/{{ comment.getID()}}" class="id badge badge-primary">#{{ comment.getID() }}</a>
             
                 {% if out_of_post is defined %}
-                    - On Post <a href="{{app.request.basepath}}/post/{{ post.getID() }}">#{{ post.getID() }}</a>
+                    - On Post <a href="{{app.request.basepath}}/post/{{ post.getID() }}" class="badge badge-primary">#{{ post.getID() }}</a>
                     : {{ post.getTitle()|capitalize }}
                 {% endif %}
             
             </div>
         
-            <div class="text details">
+            <div class="text details card-header">
                 Posted on <time datetime="{{ post.getDate(1) }}">{{ post.getDate(2) }}</time>
                 
                 {% if comment.getUser().getUsername() is defined %}
@@ -26,24 +26,28 @@
             </div>
                 
             {# Div containing the comment's content #}
-            <div class="content">
+            <div class="content card-body">
                 {{ comment.getContent() | raw }}
             </div>
                 
-            {# Div containing a mini "menu" #}       
-            <div class="menu">  
-                
-            {% if (user is defined) and (comment.getUser().getUsername() is defined) and (comment.getUser().getID() == user.getID()) %}
-                    <a class="btn btn-warning" href="{{app.request.basepath}}/post/{{ post.getID() }}/comments/{{ comment.getID() }}/edit">Edit</a>
-                    <a class="btn btn-danger" href="{{app.request.basepath}}/post/{{ post.getID() }}/comments/{{ comment.getID() }}/delete">Remove</a>
-            {% elseif (user is defined) and (user.getAdmin() == '1') %}
-                    <a class="btn btn-danger" href="{{app.request.basepath}}/post/{{ post.getID() }}/comments/{{ comment.getID() }}/delete">Delete</a>                
-            {% endif %}
-                
-                    <a class="btn btn-primary" href="{{app.request.basepath}}/post/{{ post.getID() }}/comments">Go back to the Comments</a>
-            </div>
-                
         </div>
+                
+            {# Div containing a mini "menu" #}       
+            <div class="menu btn-group btn-lg" role="group" aria-label="Actions related to this comment">
+                        
+                <a class="btn btn-lg btn-secondary" href="#NOT_YET_IMPLEMENTED">Report</a>
+                
+                {% if (user is defined) and (comment.getUser().getUsername() is defined) and (comment.getUser().getID() == user.getID()) %}
+                        <a class="btn btn-lg btn-warning" href="{{app.request.basepath}}/post/{{ post.getID() }}/comments/{{ comment.getID() }}/edit">Edit</a>
+                        <a class="btn btn-lg btn-danger" href="{{app.request.basepath}}/post/{{ post.getID() }}/comments/{{ comment.getID() }}/delete">Remove</a>
+                {% elseif (user is defined) and (user.getAdmin() == '1') %}
+                        <a class="btn btn-lg btn-danger" href="{{app.request.basepath}}/post/{{ post.getID() }}/comments/{{ comment.getID() }}/delete">Delete</a>                
+                {% endif %}
+                    
+                <a class="btn btn-lg btn-secondary" href="{{app.request.basepath}}/post/{{ post.getID() }}/comments">Go back to the Comments</a>
+                <a class="btn btn-lg btn-primary" href="{{app.request.basepath}}/post/{{ post.getID() }}/comments">Go back to the Post</a>
+                
+            </div>
         
     </div>
 {% endblock comment %}

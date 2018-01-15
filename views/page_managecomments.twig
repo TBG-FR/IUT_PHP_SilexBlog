@@ -1,6 +1,6 @@
 {# 'page_managecomments.twig' ~ Similar to 'page_allcomments.twig', but here we take all the comments of the site, not all the comments on one post #}
 
-{% extends "layout.twig" %}
+{% extends "includes/layout.twig" %}
 
 {% block head %}
     <title>SilexBlog - Comments [Admin]</title>
@@ -9,7 +9,7 @@
 {% block body %}
 
     <h1 class="centered hline-bottom">WIP : This Page isn't finished yet !</h1>
-    <h2 class="centered title">Manage all comments posted on the Blog</h2>
+    <h1 class="centered title">Manage all comments posted on the Blog</h1>
 
     {% for post in posts %}
 

@@ -1,6 +1,6 @@
 {# 'comments_edit.twig' ~ Page displaying Comment edition forms #}
 
-{% extends "layout.twig" %}
+{% extends "includes/layout.twig" %}
 
 {% block head %}
 
@@ -19,10 +19,8 @@
         
         <div class="title info">
             
-            Edition of 
-            
-            {% if comment.getID() is defined %}
-                Comment #{{ comment.getID() }}
+            {% if comment.getID() is defined and comment.getID() is not null %}
+                Edition of Comment #{{ comment.getID() }}
             {% else %}
                 New Comment
             {% endif %}

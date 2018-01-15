@@ -13,7 +13,7 @@
             {% if post.getImage() is not empty %}
                 {# Image of the post, resized #}
                 <div class="image">
-                    <img src="__DIR__ . '/../../web/posts_imgs/{{ post.getImage() }}" alt='Image for the post "{{ post.getTitle()|capitalize }}" : "{{ post.getImage() }}"' height="650px">
+                    <img src="__DIR__ . '/../../web/posts_imgs/{{ post.getImage() }}" alt='Image for the post "{{ post.getTitle()|capitalize }}" : "{{ post.getImage() }}"'  class="img-fluid">
                 </div>
             {% endif %}
             
@@ -26,16 +26,18 @@
             <div class="info">
                 
                 <span class="details">
-                    <time datetime="{{ post.getDate(1) }}">{{ post.getDate(2) }}</time>
-                    <a href="{{app.request.basepath}}/post/{{ post.getID() }}/comments">Display only comments ({{ post.getNbComments() }})</a>
+                    <time datetime="{{ post.getDate(1) }}">Published {{ post.getDate(2) }}</time>
+                    {# Any other details would go here (Author, tags, etc) #}
                 </span>
-                               
-                {% if (user is defined) and (user.getAdmin() == 1) %}
-                    <span class="menu">
+                
+                <span class="menu btn-group btn-sm" role="group" aria-label="Actions related to this post">
+                        <a class="btn btn-primary" href="{{app.request.basepath}}/post/{{ post.getID() }}">Read that post</a> 
+                        <a class="btn btn-secondary" href="{{app.request.basepath}}/post/{{ post.getID() }}/comments">Display only comments ({{ post.getNbComments() }})</a>                
+                        {% if (user is defined) and (user.getAdmin() == 1) %}
                             <a class="btn btn-warning" href="{{app.request.basepath}}/post/{{ post.getID() }}/edit">Edit that post</a>
                             <a class="btn btn-danger" href="{{app.request.basepath}}/post/{{ post.getID() }}/delete">Delete that post</a>
-                    </span>
-                {% endif %}
+                        {% endif %}
+                </span>
                 
             </div>
                 

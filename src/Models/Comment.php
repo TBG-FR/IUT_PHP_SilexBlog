@@ -87,7 +87,7 @@ class Comment {
 
         else if($type == 2) {
 
-            $datetime = date('l jS \o\f F Y \a\t H:i', strtotime($this->date));
+            $datetime = date('l \t\h\e jS \o\f F Y \a\t H:i', strtotime($this->date));
 
             return $datetime;
 

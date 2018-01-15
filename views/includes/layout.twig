@@ -19,6 +19,8 @@
         <header>
             {% block header %}
             
+                {% include "includes/header.twig" %}
+            
                 {% include "includes/navbar.twig" %}
             
             {% endblock header %}
@@ -32,10 +34,10 @@
             {% endblock body %}
         </div>
         
-        <footer>
+        <footer class="bg-dark">
             {% block footer %}
             
-                {% include "includes/legal.twig" %}
+                <span id="legal">{% include "includes/legal.twig" %}</span>
             
             {% endblock footer %}
         </footer>

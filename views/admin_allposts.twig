@@ -1,12 +1,14 @@
 {# 'admin_allposts.twig' ~ Page displaying all the posts in Admin mode #}
 
-{% extends "layout.twig" %}
+{% extends "includes/layout.twig" %}
 
 {% block head %}
     <title>SilexBlog - Posts [Admin]</title>
 {% endblock %}
 
 {% block body %}
+
+    <h1 class="centered title">Manage all Blogposts</h1>
 
     {% include "posts_display_list.twig" %}
 

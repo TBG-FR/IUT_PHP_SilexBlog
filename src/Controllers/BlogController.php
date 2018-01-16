@@ -395,14 +395,14 @@ class BlogController {
                     /* TODO : ADD ERROR */
                     echo 'Exception : OWN_ERR_:_NO_CONTENT \n';
 
-                    return $app['twig']->render('comments_edit.twig', ['postID' => $post_index, 'comment' => new Comment($content, $id)]);
+                    return $app['twig']->render('comments_edit.twig', ['postID' => $post_index, 'comment' => new Comment($content, $id), 'user' => $_SESSION['user']]);
 
                 }
 
                 // ELSE [there is content] (=> insert or update needed)
                 else {
 
-                    // IF there is no ID (=> insertion requested, new post)
+                    // IF there is no ID (=> insertion requested, new comment)
                     if($id == '') {
 
                         try {
@@ -429,7 +429,7 @@ class BlogController {
 
                     }
 
-                    // ELSE [there is an ID] (=> update requested, not a new post)
+                    // ELSE [there is an ID] (=> update requested, not a new comment)
                     else {
 
                         try {
@@ -479,7 +479,7 @@ class BlogController {
                 $newcom = new Comment("");
 
                 // Sends those values to the twig template
-                return $app['twig']->render('comments_edit.twig', ['postID' => $post_index, 'comment' => $newcom]);
+                return $app['twig']->render('comments_edit.twig', ['postID' => $post_index, 'comment' => $newcom, 'user' => $_SESSION['user']]);
 
             }
             

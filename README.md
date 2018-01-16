@@ -4,7 +4,8 @@ Website (in fact, Blog) made for "Projet Web" lessons @ Lyon1 University
 
 # How to test it
 
-- Generate the Database with the `silexblog_bdd.sql` script located in the `DATABASE` folder
+- Generate the Database with one of the scripts located in the `DATABASE` folder
+(`silexblog_db_exported.sql` is the most advanced version, exported under phpMyAdmin, while `silexblog_db_generation.sql` is the simple hand-made one)
 - Modify Database informations in `index.php` (lines 26 to 33)
 - You can then access the site, and try the different functions with the following credentials
 

@@ -54,7 +54,8 @@ class Blogpost {
      */
     public function __construct($title, $content, $id = null, $image = null){
         
-        $this->date = date('Y-m-d H:i:s');
+		//$this->date = date('Y-m-d H:i:s');
+        $this->setCurrentDate();
         
         $this->id = $id;
         $this->title = $title;

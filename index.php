@@ -43,6 +43,11 @@ session_start();
 $app['user'] = new UserManagement($app['em']);
 
 /**
+ * USEFUL THINGS
+ */
+date_default_timezone_set("Europe/Paris");
+ 
+/**
  * ROUTES
  */
 
